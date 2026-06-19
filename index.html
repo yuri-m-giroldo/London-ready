@@ -1,954 +1,377 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>London Ready</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Space+Grotesk:wght@500;600;700&display=swap');
-:root{
-  --bg:#0b0f1a;
-  --navy:#0d1f3c;
-  --navy2:#122548;
-  --surface:#111827;
-  --surface2:#1a2540;
-  --border:#1e2d4a;
-  --red:#c8102e;
-  --red2:#a50d25;
-  --gold:#c9a84c;
-  --gold2:#e8c96a;
-  --white:#f0f4ff;
-  --muted:#6b7fa3;
-  --text:#dde4f5;
-  --r:14px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:100%;max-width:100%;background:var(--bg);color:var(--text);
-  font-family:'Inter',sans-serif;font-size:16px;overflow-x:hidden;-webkit-text-size-adjust:100%;}
-
-/* ── HEADER ── */
-.header{
-  background:var(--navy);
-  border-bottom:2px solid var(--red);
-  padding:12px 16px;
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:10;
-}
-.logo-wrap{display:flex;align-items:center;gap:8px;}
-.logo-flag{font-size:1.3rem;}
-.logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;
-  color:var(--white);letter-spacing:0.3px;}
-.logo span{color:var(--gold);}
-.header-badge{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;
-  color:var(--gold);border:1px solid var(--gold);padding:3px 8px;border-radius:4px;opacity:.8;}
-
-/* ── TABS ── */
-.tabs-wrap{overflow-x:auto;scrollbar-width:none;
-  background:var(--navy);border-bottom:1px solid var(--border);padding:10px 14px;}
-.tabs-wrap::-webkit-scrollbar{display:none;}
-.tabs{display:flex;gap:6px;width:max-content;}
-.tab{padding:6px 13px;border-radius:999px;border:1.5px solid var(--border);background:transparent;
-  color:var(--muted);font-size:0.75rem;font-weight:500;cursor:pointer;white-space:nowrap;
-  font-family:'Inter',sans-serif;transition:all .18s;-webkit-tap-highlight-color:transparent;}
-.tab.active{border-color:var(--red);color:var(--white);background:var(--red);}
-.tab:hover:not(.active){border-color:var(--gold);color:var(--gold);}
-
-/* ── PROGRESS ── */
-.prog-wrap{display:flex;align-items:center;gap:10px;padding:10px 16px 0;
-  background:var(--navy2);border-bottom:1px solid var(--border);}
-.pbar{flex:1;height:3px;background:var(--border);border-radius:99px;overflow:hidden;}
-.pbar-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold));
-  border-radius:99px;transition:width .4s ease;}
-.plabel{font-size:0.7rem;color:var(--muted);white-space:nowrap;padding-bottom:10px;}
-
-/* ── CARD ── */
-.card-wrap{padding:14px 14px 6px;}
-.card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;}
-
-.card-tag{display:flex;align-items:center;gap:6px;padding:10px 14px 0;
-  font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);}
-.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-
-.q-block{padding:10px 14px 14px;}
-.block-label{font-size:0.65rem;color:var(--muted);font-weight:600;text-transform:uppercase;
-  letter-spacing:.7px;margin-bottom:5px;}
-.q-en{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;
-  line-height:1.3;color:var(--white);margin-bottom:4px;}
-.q-pt{font-size:0.82rem;color:var(--muted);line-height:1.4;margin-bottom:12px;font-style:italic;}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;
-  padding:9px 16px;border-radius:999px;border:1.5px solid var(--border);
-  background:transparent;color:var(--text);font-size:0.79rem;font-weight:500;
-  cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s;
-  -webkit-tap-highlight-color:transparent;white-space:nowrap;}
-.btn:active{opacity:.7;}
-.btn.audio-q{border-color:var(--border);color:var(--muted);}
-.btn.audio-q:hover,.btn.audio-q:active{border-color:var(--gold);color:var(--gold);}
-
-/* ── SELECT ── */
-.select-block{border-top:1px solid var(--border);padding:14px;}
-
-.select-wrap{position:relative;margin-bottom:10px;}
-.select-wrap select{
-  width:100%;background:var(--navy);border:1.5px solid var(--border);border-radius:10px;
-  padding:11px 36px 11px 12px;color:var(--text);font-size:0.86rem;font-family:'Inter',sans-serif;
-  appearance:none;-webkit-appearance:none;outline:none;cursor:pointer;line-height:1.4;
-  transition:border-color .18s;}
-.select-wrap select:focus{border-color:var(--gold);}
-.select-wrap::after{content:'▾';position:absolute;right:12px;top:50%;transform:translateY(-50%);
-  color:var(--muted);pointer-events:none;font-size:0.85rem;}
-.select-wrap option{background:#0d1f3c;color:var(--text);}
-
-.btn.confirm{width:100%;background:var(--red);border:none;color:#fff;
-  font-weight:600;margin-bottom:12px;font-size:0.85rem;padding:10px 16px;}
-.btn.confirm:hover{background:var(--red2);}
-.btn.confirm:disabled{opacity:.35;cursor:not-allowed;}
-
-/* ── RESULT ── */
-.result-box{background:var(--surface2);border-radius:10px;padding:12px;
-  border:1px solid var(--border);display:none;animation:fadeUp .25s ease;}
-.result-box.visible{display:block;}
-
-.r-label{font-size:0.65rem;color:var(--muted);font-weight:600;text-transform:uppercase;
-  letter-spacing:.7px;margin-bottom:6px;}
-.r-en{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;
-  color:var(--gold2);line-height:1.4;margin-bottom:4px;}
-.r-phonetic{font-size:0.74rem;color:var(--muted);font-style:italic;margin-bottom:10px;
-  padding:5px 8px;background:rgba(201,168,76,.07);border-radius:6px;
-  border-left:2px solid var(--gold);}
-.btn.audio-a{border-color:var(--gold);color:var(--gold);
-  background:rgba(201,168,76,.08);font-size:0.79rem;}
-.btn.audio-a:hover{background:rgba(201,168,76,.16);}
-
-/* ── NAV ── */
-.nav-row{display:flex;gap:8px;padding:8px 14px 18px;}
-.btn.prev{flex:0 0 auto;border-color:var(--border);color:var(--muted);}
-.btn.prev:hover{border-color:var(--gold);color:var(--gold);}
-.btn.next{flex:1;background:var(--navy2);border-color:var(--border);}
-.btn.next:hover{border-color:var(--gold);color:var(--gold);}
-
-/* ── DONE ── */
-.done-screen{display:none;flex-direction:column;align-items:center;text-align:center;
-  padding:50px 24px 40px;}
-.done-screen.visible{display:flex;}
-.done-emoji{font-size:2.8rem;margin-bottom:14px;}
-.done-crown{font-size:1.8rem;margin-bottom:4px;}
-.done-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;
-  color:var(--white);margin-bottom:8px;}
-.done-sub{color:var(--muted);font-size:0.84rem;line-height:1.6;margin-bottom:22px;}
-.btn.restart{background:var(--red);border:none;color:#fff;font-weight:600;padding:12px 28px;}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.speaking{animation:pls .7s ease-in-out infinite alternate;}
-@keyframes pls{from{opacity:1}to{opacity:.35}}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:#06080d;}
+select:focus{outline:none;}
+[data-lr-scroll]::-webkit-scrollbar{display:none;}
+@keyframes lr-rise{from{transform:translateY(12px);}to{transform:none;}}
+@keyframes lr-fade{from{transform:translateY(6px);}to{transform:none;}}
+@keyframes lr-pulse{from{opacity:1;}to{opacity:.4;}}
+@keyframes lr-pop{0%{transform:scale(.7);}55%{transform:scale(1.08);}100%{transform:scale(1);}}
+@keyframes lr-bump{0%{transform:scale(1);}40%{transform:scale(1.2);}100%{transform:scale(1);}}
+@keyframes lr-float{0%{opacity:0;transform:translateY(2px);}25%{opacity:1;}100%{opacity:0;transform:translateY(-26px);}}
+</style>
+<script src="./scenarios.js"></script>
+</helmet>
 
-<div class="header">
-  <div class="logo-wrap">
-    <div class="logo-flag">🇬🇧</div>
-    <div class="logo">London<span>Ready</span></div>
+<div style="min-height:100vh;background:#06080d;display:flex;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif;color:#eef2fb;-webkit-font-smoothing:antialiased;">
+  <div style="position:relative;width:100%;max-width:468px;min-height:100vh;display:flex;flex-direction:column;background:linear-gradient(180deg,#0b1020,#0a0d18 55%,#0c1426);box-shadow:0 0 0 1px rgba(255,255,255,0.05),0 40px 100px -30px rgba(0,0,0,0.8);">
+
+    <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+      <div style="position:absolute;top:-12%;left:-22%;width:85%;height:42%;background:radial-gradient(circle,rgba(200,16,46,0.55),transparent 70%);filter:blur(46px);"></div>
+      <div style="position:absolute;top:24%;right:-28%;width:85%;height:46%;background:radial-gradient(circle,rgba(24,90,200,0.5),transparent 70%);filter:blur(54px);"></div>
+      <div style="position:absolute;bottom:-12%;left:-12%;width:95%;height:40%;background:radial-gradient(circle,rgba(232,184,75,0.26),transparent 70%);filter:blur(60px);"></div>
+    </div>
+
+    <div style="position:relative;z-index:1;display:flex;flex-direction:column;flex:1;">
+
+      <header style="position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:13px 18px;background:rgba(11,16,32,0.55);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div style="display:flex;align-items:center;gap:11px;">
+          <div style="width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,#0a2a6b,#c8102e);display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;font-weight:800;letter-spacing:-0.03em;box-shadow:0 4px 14px rgba(200,16,46,0.4),inset 0 1px 0 rgba(255,255,255,0.35);">L</div>
+          <div style="font-size:18px;font-weight:700;letter-spacing:-0.025em;">London<span style="color:#FFC94A;">Ready</span></div>
+        </div>
+        <div style="position:relative;">
+          <div style="{{ xpPillStyle }}">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:block;"><path d="M13 2 3 14h7l-1 8 10-12h-7z"></path></svg>
+            <span style="font-variant-numeric:tabular-nums;">{{ xp }}</span>
+            <span style="opacity:.6;font-size:11px;">XP</span>
+          </div>
+          <sc-if value="{{ gained }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:-4px;right:8px;font-size:13px;font-weight:800;color:#FFD98A;animation:lr-float .82s ease forwards;pointer-events:none;">+10</div>
+          </sc-if>
+        </div>
+      </header>
+
+      <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+
+        <div data-lr-scroll style="overflow-x:auto;scrollbar-width:none;display:flex;gap:8px;padding:13px 16px 4px;">
+          <sc-for list="{{ scenes }}" as="s" hint-placeholder-count="5">
+            <button onClick="{{ s.onClick }}" style="{{ s.style }}"><span style="display:flex;">{{ s.icon }}</span>{{ s.shortLabel }}</button>
+          </sc-for>
+        </div>
+
+        <div style="padding:12px 18px 4px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="{{ catPillStyle }}"><span style="display:flex;">{{ catIcon }}</span>{{ catLabel }}</div>
+            <div style="font-size:12px;color:#7c8cb3;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:0.02em;">{{ progressLabel }}</div>
+          </div>
+          <div style="display:flex;gap:5px;">
+            <sc-for list="{{ segs }}" as="g" hint-placeholder-count="10">
+              <button onClick="{{ g.onClick }}" style="{{ g.style }}"></button>
+            </sc-for>
+          </div>
+        </div>
+
+        <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
+          <main style="flex:1;padding:14px 18px 18px;">
+
+            <div style="background:rgba(255,255,255,0.05);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);border:1px solid rgba(255,255,255,0.10);border-radius:20px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.13),0 22px 46px -28px rgba(0,0,0,0.8);">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <span style="display:inline-block;width:23px;height:15px;border-radius:3px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,0.18);"><svg viewBox="0 0 60 40" width="23" height="15" preserveAspectRatio="none" style="display:block;"><rect width="60" height="40" fill="#012169"></rect><path d="M0,0 60,40 M60,0 0,40" stroke="#fff" stroke-width="8"></path><path d="M0,0 60,40" stroke="#C8102E" stroke-width="4"></path><path d="M60,0 0,40" stroke="#C8102E" stroke-width="4"></path><rect x="25" width="10" height="40" fill="#fff"></rect><rect y="15" width="60" height="10" fill="#fff"></rect><rect x="26.5" width="7" height="40" fill="#C8102E"></rect><rect y="16.5" width="60" height="7" fill="#C8102E"></rect></svg></span>
+                  <span style="font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#8fa3cc;">inglês</span>
+                </div>
+                <button onClick="{{ onSpeakQ }}" style="{{ speakQStyle }}">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M11 5 6 9H2v6h4l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5.5a9 9 0 0 1 0 13"></path></svg>
+                </button>
+              </div>
+              <h1 style="font-size:25px;line-height:1.2;font-weight:700;letter-spacing:-0.02em;color:#f3f6fd;margin:0;text-wrap:pretty;">{{ qEn }}</h1>
+              <div style="height:1px;background:rgba(255,255,255,0.09);margin:14px 0;"></div>
+              <div style="display:flex;align-items:center;gap:9px;">
+                <span style="display:inline-block;width:23px;height:15px;border-radius:3px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,0.18);"><svg viewBox="0 0 60 40" width="23" height="15" preserveAspectRatio="none" style="display:block;"><rect width="60" height="40" fill="#009B3A"></rect><polygon points="30,4 55,20 30,36 5,20" fill="#FEDF00"></polygon><circle cx="30" cy="20" r="8" fill="#002776"></circle></svg></span>
+                <p style="font-size:15px;line-height:1.42;color:#9fb0d4;margin:0;">{{ qPt }}</p>
+              </div>
+            </div>
+
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#7c8cb3;margin:18px 0 10px;">Como você responderia?</div>
+
+            <div style="position:relative;margin-bottom:12px;">
+              <select value="{{ selectedValue }}" onChange="{{ onSelect }}" style="appearance:none;-webkit-appearance:none;width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:15px 44px 15px 16px;font-size:15px;color:#eef2fb;font-family:inherit;line-height:1.35;cursor:pointer;">
+                <option value="" style="background:#121a30;color:#9fb0d4;">Escolha sua resposta…</option>
+                <sc-for list="{{ options }}" as="o" hint-placeholder-count="6">
+                  <option value="{{ o.value }}" style="background:#121a30;color:#eef2fb;">{{ o.label }}</option>
+                </sc-for>
+              </select>
+              <div style="position:absolute;right:18px;top:50%;transform:translateY(-50%);pointer-events:none;color:#8fa3cc;font-size:13px;">▾</div>
+            </div>
+
+            <sc-if value="{{ showConfirm }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ onConfirm }}" disabled="{{ confirmDisabled }}" style="{{ confirmStyle }}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path><path d="m6.3 6.3 2.4 2.4M15.3 15.3l2.4 2.4M17.7 6.3l-2.4 2.4M8.7 15.3l-2.4 2.4"></path></svg>
+                Ver resposta em inglês
+              </button>
+            </sc-if>
+
+            <sc-if value="{{ revealed }}" hint-placeholder-val="{{ false }}">
+              <div style="{{ revealBoxStyle }}">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                  <span style="display:inline-block;width:21px;height:14px;border-radius:3px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,0.18);"><svg viewBox="0 0 60 40" width="21" height="14" preserveAspectRatio="none" style="display:block;"><rect width="60" height="40" fill="#009B3A"></rect><polygon points="30,4 55,20 30,36 5,20" fill="#FEDF00"></polygon><circle cx="30" cy="20" r="8" fill="#002776"></circle></svg></span>
+                  <span style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#8fa3cc;">você quis dizer</span>
+                </div>
+                <p style="font-size:15px;line-height:1.4;color:#aab9da;margin:0 0 15px;">{{ rPt }}</p>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+                  <span style="display:inline-block;width:21px;height:14px;border-radius:3px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,0.18);"><svg viewBox="0 0 60 40" width="21" height="14" preserveAspectRatio="none" style="display:block;"><rect width="60" height="40" fill="#012169"></rect><path d="M0,0 60,40 M60,0 0,40" stroke="#fff" stroke-width="8"></path><path d="M0,0 60,40" stroke="#C8102E" stroke-width="4"></path><path d="M60,0 0,40" stroke="#C8102E" stroke-width="4"></path><rect x="25" width="10" height="40" fill="#fff"></rect><rect y="15" width="60" height="10" fill="#fff"></rect><rect x="26.5" width="7" height="40" fill="#C8102E"></rect><rect y="16.5" width="60" height="7" fill="#C8102E"></rect></svg></span>
+                  <span style="{{ revealEnLabelStyle }}">em inglês</span>
+                </div>
+                <div style="font-size:20px;font-weight:700;line-height:1.3;letter-spacing:-0.01em;color:#f3f6fd;margin:0 0 13px;text-wrap:pretty;">{{ rEn }}</div>
+                <div style="display:inline-block;font-size:13px;color:#cdd8ef;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;margin-bottom:16px;">{{ rPhonetic }}</div>
+                <div>
+                  <button onClick="{{ onSpeakA }}" style="{{ speakAStyle }}">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M11 5 6 9H2v6h4l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5.5a9 9 0 0 1 0 13"></path></svg>
+                    Ouvir em inglês
+                  </button>
+                </div>
+              </div>
+            </sc-if>
+          </main>
+
+          <div style="position:sticky;bottom:0;z-index:20;display:flex;align-items:center;gap:10px;padding:12px 18px;background:rgba(11,16,32,0.62);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);border-top:1px solid rgba(255,255,255,0.08);">
+            <button onClick="{{ onPrev }}" disabled="{{ firstQ }}" style="{{ prevStyle }}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="m15 18-6-6 6-6"></path></svg>
+            </button>
+            <button onClick="{{ onNext }}" style="{{ nextStyle }}">
+              {{ nextLabel }}
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M5 12h13"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:46px 30px;animation:lr-fade .4s ease;">
+            <div style="{{ doneCircleStyle }}">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v4a6 6 0 0 1-12 0z"></path><path d="M6 6H4a2 2 0 0 0 0 4h2"></path><path d="M18 6h2a2 2 0 0 1 0 4h-2"></path><path d="M9 18h6"></path><path d="M12 14v4"></path><path d="M8 21h8"></path></svg>
+            </div>
+            <h1 style="font-size:28px;font-weight:800;letter-spacing:-0.025em;color:#f3f6fd;margin:24px 0 9px;">Mandou bem!</h1>
+            <p style="font-size:15px;color:#9fb0d4;line-height:1.5;margin:0 0 22px;max-width:300px;">Você praticou todas as frases de <b style="color:#cdd8ef;font-weight:700;">{{ doneScene }}</b>. Continue treinando para chegar a Londres pronto.</p>
+            <div style="display:flex;gap:10px;margin-bottom:26px;">
+              <div style="display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.11);font-size:14px;font-weight:700;color:#dbe4f7;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#37C7B8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M20 6 9 17l-5-5"></path></svg>
+                {{ scoreLabel }}
+              </div>
+              <div style="display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:14px;background:rgba(255,201,74,0.12);border:1px solid rgba(255,201,74,0.3);font-size:14px;font-weight:700;color:#FFD98A;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:block;"><path d="M13 2 3 14h7l-1 8 10-12h-7z"></path></svg>
+                {{ xp }} XP
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;width:100%;max-width:350px;">
+              <button onClick="{{ onRestart }}" style="{{ restartStyle }}">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"></path><path d="M3 3v5h5"></path></svg>
+                Repetir
+              </button>
+              <button onClick="{{ onNextScene }}" style="{{ nextSceneStyle }}">
+                Próximo cenário
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M5 12h13"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+        </sc-if>
+
+      </sc-if>
+    </div>
   </div>
-  <div class="header-badge">English Trainer</div>
 </div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { ready:false, scene:null, idx:0, sel:'', revealed:false, done:false, speaking:null, xp:0, practiced:{}, gained:false };
 
-<div class="tabs-wrap"><div class="tabs" id="tabs"></div></div>
+  ACCENTS = { airport:'#5B9BFF', daily:'#FFC94A', health:'#FF5C72', transport:'#37C7B8', restaurant:'#FF9A52' };
+  LS = 'londonready_progress_v1';
 
-<div class="prog-wrap">
-  <div class="pbar"><div class="pbar-fill" id="pbarFill" style="width:0%"></div></div>
-  <div class="plabel" id="plabel">1 / 10</div>
-</div>
+  componentDidMount(){
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(this.LS) || '{}'); } catch(e){}
+    if (saved && (saved.xp || saved.practiced)) this.setState({ xp:saved.xp||0, practiced:saved.practiced||{} });
 
-<div class="card-wrap" id="cardWrap">
-  <div class="card">
-    <div class="card-tag">
-      <span class="dot" id="tagDot"></span>
-      <span id="tagText"></span>
-    </div>
-    <div class="q-block">
-      <div class="block-label">Pergunta</div>
-      <div class="q-en" id="qEn"></div>
-      <div class="q-pt" id="qPt"></div>
-      <button class="btn audio-q" id="btnListenQ" onclick="speak('q')">🔊 Ouvir pergunta</button>
-    </div>
-    <div class="select-block">
-      <div class="block-label" style="margin-bottom:8px;">Como você responderia?</div>
-      <div class="select-wrap">
-        <select id="answerSelect" onchange="onSelectChange()">
-          <option value="">— Escolha sua resposta em português —</option>
-        </select>
-      </div>
-      <button class="btn confirm" id="btnConfirm" onclick="confirmAnswer()" disabled>
-        Ver e ouvir em inglês →
-      </button>
-      <div class="result-box" id="resultBox">
-        <div class="r-label">Sua resposta em inglês</div>
-        <div class="r-en" id="rEn"></div>
-        <div class="r-phonetic" id="rPhonetic"></div>
-        <button class="btn audio-a" id="btnListenA" onclick="speak('a')">🔊 Ouvir em inglês</button>
-      </div>
-    </div>
-  </div>
-</div>
+    const grab = () => {
+      if (window.LONDON_SCENARIOS){
+        this.DATA = window.LONDON_SCENARIOS;
+        this.setState({ ready:true, scene: Object.keys(this.DATA)[0] });
+        return true;
+      }
+      return false;
+    };
+    if (!grab()) this._t = setInterval(()=>{ if (grab()) clearInterval(this._t); }, 30);
 
-<div class="nav-row" id="navRow">
-  <button class="btn prev" id="btnPrev" onclick="nav(-1)" disabled>← Anterior</button>
-  <button class="btn next" id="btnNext" onclick="nav(1)">Próxima →</button>
-</div>
+    if ('speechSynthesis' in window){
+      try { window.speechSynthesis.getVoices(); window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices(); } catch(e){}
+    }
+    this._key = (e) => {
+      if (this.state.done || !this.state.ready) return;
+      if (e.key === 'ArrowRight') this.nav(1);
+      else if (e.key === 'ArrowLeft') this.nav(-1);
+    };
+    window.addEventListener('keydown', this._key);
+  }
+  componentWillUnmount(){
+    if (this._t) clearInterval(this._t);
+    if (this._g) clearTimeout(this._g);
+    if (this._key) window.removeEventListener('keydown', this._key);
+    this.stopSpeech();
+  }
 
-<div class="done-screen" id="doneScreen">
-  <div class="done-crown">👑</div>
-  <div class="done-emoji">🎉</div>
-  <div class="done-title">Well done!</div>
-  <div class="done-sub">Você praticou todas as perguntas deste bloco.<br>Repita ou escolha outro cenário acima.</div>
-  <button class="btn restart" onclick="restart()">↩ Repetir este bloco</button>
-</div>
+  hexA(hex, a){ const n = parseInt(hex.slice(1),16); return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`; }
+  lighten(hex, amt){ const n=parseInt(hex.slice(1),16); let r=(n>>16)&255,g=(n>>8)&255,b=n&255; r=Math.round(r+(255-r)*amt); g=Math.round(g+(255-g)*amt); b=Math.round(b+(255-b)*amt); return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1); }
 
-<script>
-const SCENARIOS = {
-  airport:{label:'Aeroporto / Imigração',icon:'✈️',color:'#c8102e',questions:[
-    {q:"What is the purpose of your visit?",pt:"Qual é o motivo da sua visita?",answers:[
-      {pt:"Vou visitar meus filhos que moram em Londres.",en:"I'm visiting my children who live in London.",ph:"áim víziting mái tchíldren huu liv in lándon"},
-      {pt:"Vou visitar meus primos que moram aqui.",en:"I'm visiting my cousins who live here.",ph:"áim víziting mái cázins huu liv hír"},
-      {pt:"Vou visitar minha família em Londres.",en:"I'm visiting family in London.",ph:"áim víziting féimili in lándon"},
-      {pt:"Meus filhos são donos de um restaurante aqui.",en:"My children own a restaurant here.",ph:"mái tchíldren óun a réstront hír"},
-      {pt:"Meus parentes trabalham com restaurante e açougue aqui.",en:"My relatives run a restaurant and a butcher's here.",ph:"mái rélotivs rán a réstront and a bútcherz hír"},
-      {pt:"É uma visita familiar, meus filhos moram aqui.",en:"It's a family visit, my children live here.",ph:"its a féimili vízit, mái tchíldren liv hír"},
-      {pt:"Vim passar um tempo com minha família.",en:"I came to spend time with my family.",ph:"ái kêim tu spend táim with mái féimili"},
-      {pt:"Meus primos são residentes britânicos e me convidaram.",en:"My cousins are British residents and invited me.",ph:"mái cázins ar brítish rézidents and inváitid mi"},
-      {pt:"Visita de lazer e família.",en:"Leisure and family visit.",ph:"léjher and féimili vízit"},
-      {pt:"Vim conhecer melhor a cidade onde minha família vive.",en:"I came to explore the city where my family lives.",ph:"ái kêim tu ikspló dê síti uér mái féimili livz"},
-    ]},
-    {q:"How long are you planning to stay?",pt:"Por quanto tempo planeja ficar?",answers:[
-      {pt:"Vou ficar quinze dias.",en:"I'm planning to stay for fifteen days.",ph:"áim pláning tu stêi for fiftíin dêiz"},
-      {pt:"Vou ficar quarenta e cinco dias.",en:"I'm planning to stay for forty-five days.",ph:"áim pláning tu stêi for fórti fáiv dêiz"},
-      {pt:"Vou ficar três meses.",en:"I'm planning to stay for three months.",ph:"áim pláning tu stêi for thrí mánths"},
-      {pt:"Quinze dias, mas posso estender se precisar.",en:"Fifteen days, but I may extend if needed.",ph:"fiftíin dêiz, bat ái mêi iksténd if níidid"},
-      {pt:"Quarenta e cinco dias para visitar minha família.",en:"Forty-five days to visit my family.",ph:"fórti fáiv dêiz tu vízit mái féimili"},
-      {pt:"Três meses para ficar com meus filhos.",en:"Three months to stay with my children.",ph:"thrí mánths tu stêi with mái tchíldren"},
-      {pt:"Em torno de um mês e meio.",en:"Around a month and a half.",ph:"aráund a mánth and a haf"},
-      {pt:"Duas semanas, depois vejo se fico mais.",en:"Two weeks, then I'll see if I stay longer.",ph:"tuu uíiks, den áil síi if ái stêi lónger"},
-      {pt:"Ainda não sei ao certo, entre um e três meses.",en:"I'm not sure yet, between one and three months.",ph:"áim nót shúr iét, bitwíin uán and thrí mánths"},
-      {pt:"Três meses é o planejado, mas depende da família.",en:"Three months is the plan, depending on family.",ph:"thrí mánths iz dê plán, dipénding on féimili"},
-    ]},
-    {q:"Do you have an address in the UK?",pt:"Você tem um endereço no Reino Unido?",answers:[
-      {pt:"Sim, vou ficar na casa dos meus filhos.",en:"Yes, I'll be staying at my children's home.",ph:"iés, áil bi stêin at mái tchíldronz hóum"},
-      {pt:"Sim, vou ficar com meus primos.",en:"Yes, I'll be staying with my cousins.",ph:"iés, áil bi stêin with mái cázins"},
-      {pt:"Sim, minha família tem casa aqui. Aqui está o endereço.",en:"Yes, my family has a home here. Here is the address.",ph:"iés, mái féimili haz a hóum hír. hír iz di édrês"},
-      {pt:"Vou ficar na casa do meu filho, aqui está o endereço.",en:"I'll stay at my son's place, here is the address.",ph:"áil stêi at mái sánz plêis, hír iz di édrês"},
-      {pt:"Meus parentes têm um restaurante e moram aqui em Londres.",en:"My relatives own a restaurant and live here in London.",ph:"mái rélotivs óun a réstront and liv hír in lándon"},
-      {pt:"Vou ficar na casa da minha prima.",en:"I'll be staying at my cousin's house.",ph:"áil bi stêin at mái cázinz háus"},
-      {pt:"Minha filha mora em Londres há anos.",en:"My daughter has lived in London for years.",ph:"mái dóter haz livd in lándon for íers"},
-      {pt:"Sim, minha família tem residência aqui.",en:"Yes, my family has a residence here.",ph:"iés, mái féimili haz a rézidons hír"},
-      {pt:"Vou ficar com meus parentes que são residentes britânicos.",en:"I'll stay with my relatives who are British residents.",ph:"áil stêi with mái rélotivs huu ar brítish rézidents"},
-      {pt:"Aqui está o endereço da casa da minha família.",en:"Here is my family's home address.",ph:"hír iz mái féimiliz hóum édrês"},
-    ]},
-    {q:"Do you have a return ticket?",pt:"Você tem passagem de volta?",answers:[
-      {pt:"Sim, minha volta é em quinze dias.",en:"Yes, I return in fifteen days.",ph:"iés, ái ritérn in fiftíin dêiz"},
-      {pt:"Sim, minha passagem de volta é em quarenta e cinco dias.",en:"Yes, my return ticket is in forty-five days.",ph:"iés, mái ritérn tíket iz in fórti fáiv dêiz"},
-      {pt:"Sim, volto em três meses.",en:"Yes, I return in three months.",ph:"iés, ái ritérn in thrí mánths"},
-      {pt:"Sim, aqui está no meu celular.",en:"Yes, it's here on my phone.",ph:"iés, its hír on mái fóun"},
-      {pt:"Sim, tenho passagem de volta confirmada.",en:"Yes, I have a confirmed return ticket.",ph:"iés, ái háv a konférmd ritérn tíket"},
-      {pt:"Sim, é só uma visita à família.",en:"Yes, it's just a family visit.",ph:"iés, its djást a féimili vízit"},
-      {pt:"Sim, aqui está o comprovante.",en:"Yes, here is the confirmation.",ph:"iés, hír iz dê konfermêishon"},
-      {pt:"Sim, volto em quarenta e cinco dias para o Brasil.",en:"Yes, I return to Brazil in forty-five days.",ph:"iés, ái ritérn tu brozíl in fórti fáiv dêiz"},
-      {pt:"Sim, é uma visita temporária.",en:"Yes, it's a temporary visit.",ph:"iés, its a témpóreri vízit"},
-      {pt:"Sim, tenho passagem de ida e volta.",en:"Yes, I have a return ticket.",ph:"iés, ái háv a ritérn tíket"},
-    ]},
-    {q:"Can I see your passport and visa, please?",pt:"Posso ver seu passaporte e visto?",answers:[
-      {pt:"Claro, aqui está.",en:"Of course, here you go.",ph:"ov córs, hír yu góu"},
-      {pt:"Sim, um momento.",en:"Yes, just a moment.",ph:"iés, djást a móument"},
-      {pt:"Aqui está meu passaporte e visto.",en:"Here are my passport and visa.",ph:"hír ar mái pásport and víiza"},
-      {pt:"Com certeza, pode verificar.",en:"Certainly, please go ahead.",ph:"sértenli, plíiz góu ahéd"},
-      {pt:"Aqui, fique à vontade.",en:"Here, feel free to check.",ph:"hír, fíil frí tu tchék"},
-      {pt:"Meu visto está dentro do passaporte.",en:"My visa is inside the passport.",ph:"mái víiza iz insáid dê pásport"},
-      {pt:"Sim, aqui estão todos os documentos.",en:"Yes, here is all my documentation.",ph:"iés, hír iz ól mái dokiumentêishon"},
-      {pt:"Um segundo, está na minha mochila.",en:"One second, it's in my bag.",ph:"uán sékond, its in mái bég"},
-      {pt:"Aqui está, pode verificar.",en:"Here it is, please check.",ph:"hír it iz, plíiz tchék"},
-      {pt:"Aqui está meu passaporte brasileiro.",en:"Here is my Brazilian passport.",ph:"hír iz mái brozílion pásport"},
-    ]},
-    {q:"Do you have proof of funds?",pt:"Você tem comprovante de recursos financeiros?",answers:[
-      {pt:"Sim, tenho dinheiro em espécie e cartão de crédito.",en:"Yes, I have cash and a credit card.",ph:"iés, ái háv késh and a krédit kard"},
-      {pt:"Trago dinheiro vivo para os gastos aqui.",en:"I'm bringing cash for my expenses here.",ph:"áim bríinging késh for mái ikspénsiz hír"},
-      {pt:"Tenho cartão de crédito internacional.",en:"I have an international credit card.",ph:"ái háv an internaeshonol krédit kard"},
-      {pt:"Sim, aqui estão meus extratos bancários.",en:"Yes, here are my bank statements.",ph:"iés, hír ar mái bénk stêitments"},
-      {pt:"Tenho dinheiro e cartão, não preciso de muito pois fico na casa da família.",en:"I have cash and card, I don't need much as I'm staying with family.",ph:"ái háv késh and kard, ái dóunt níid mátch az áim stêing with féimili"},
-      {pt:"Minha família me recebe em casa, então os gastos são baixos.",en:"My family hosts me, so my expenses are low.",ph:"mái féimili hóusts mi, sóu mái ikspénsiz ar lóu"},
-      {pt:"Tenho dinheiro suficiente para a visita.",en:"I have sufficient funds for the visit.",ph:"ái háv sufíshent fándz for dê vízit"},
-      {pt:"Posso mostrar meu extrato no celular.",en:"I can show my bank statement on my phone.",ph:"ái kán shóu mái bénk stêitement on mái fóun"},
-      {pt:"Tenho cartão de débito e crédito.",en:"I have debit and credit cards.",ph:"ái háv débit and krédit kardz"},
-      {pt:"Trago o necessário para passeios e compras.",en:"I'm bringing enough for sightseeing and shopping.",ph:"áim bríinging ináf for sáitsiing and shóping"},
-    ]},
-    {q:"Who are you travelling with?",pt:"Com quem você está viajando?",answers:[
-      {pt:"Estou viajando sozinho.",en:"I'm travelling alone.",ph:"áim tráveling alóun"},
-      {pt:"Estou viajando sozinha.",en:"I'm travelling alone.",ph:"áim tráveling alóun"},
-      {pt:"Estou com meu cônjuge.",en:"I'm travelling with my spouse.",ph:"áim tráveling with mái spáuz"},
-      {pt:"Estou com meu marido.",en:"I'm travelling with my husband.",ph:"áim tráveling with mái házbend"},
-      {pt:"Estou com minha esposa.",en:"I'm travelling with my wife.",ph:"áim tráveling with mái uáif"},
-      {pt:"Viajei sozinho para visitar minha família aqui.",en:"I travelled alone to visit my family here.",ph:"ái tráveld alóun tu vízit mái féimili hír"},
-      {pt:"Meus filhos moram aqui, estou chegando para visitá-los.",en:"My children live here, I'm arriving to visit them.",ph:"mái tchíldren liv hír, áim arráiving tu vízit dem"},
-      {pt:"Meus primos vão me buscar no aeroporto.",en:"My cousins are picking me up at the airport.",ph:"mái cázins ar píking mi áp at di érport"},
-      {pt:"Vim sozinho mas serei recebido pela família.",en:"I came alone but will be received by family.",ph:"ái kêim alóun bat uil bi risíivd bái féimili"},
-      {pt:"Apenas eu, minha família está me esperando.",en:"Just me, my family is waiting for me.",ph:"djást mi, mái féimili iz uêiting for mi"},
-    ]},
-    {q:"Have you visited the UK before?",pt:"Você já visitou o Reino Unido antes?",answers:[
-      {pt:"Não, é minha primeira vez.",en:"No, this is my first time.",ph:"nóu, dis iz mái férst táim"},
-      {pt:"Sim, já vim aqui diversas vezes em anos anteriores.",en:"Yes, I've visited several times over the years.",ph:"iés, áiv vízitid séveral táimz óuver dê íers"},
-      {pt:"Sim, venho regularmente visitar minha família.",en:"Yes, I come regularly to visit my family.",ph:"iés, ái kám réguiularli tu vízit mái féimili"},
-      {pt:"Sim, meus filhos moram aqui há anos então venho sempre.",en:"Yes, my children have lived here for years so I visit often.",ph:"iés, mái tchíldren háv livd hír for íers sóu ái vízit ófen"},
-      {pt:"Não, é minha primeira visita aos meus filhos aqui.",en:"No, it's my first time visiting my children here.",ph:"nóu, its mái férst táim víziting mái tchíldren hír"},
-      {pt:"Sim, já vim três vezes antes.",en:"Yes, I've been here three times before.",ph:"iés, áiv biin hír thrí táimz bifór"},
-      {pt:"Sim, venho todo ano visitar a família.",en:"Yes, I come every year to visit family.",ph:"iés, ái kám évri íer tu vízit féimili"},
-      {pt:"Não, mas minha família me contou muito sobre Londres.",en:"No, but my family has told me a lot about London.",ph:"nóu, bat mái féimili haz tóuld mi a lót abáut lándon"},
-      {pt:"Sim, já estive aqui no ano passado.",en:"Yes, I was here last year.",ph:"iés, ái uóz hír last íer"},
-      {pt:"Sim, já visitei várias vezes ao longo dos anos.",en:"Yes, I've visited several times over the years.",ph:"iés, áiv vízitid séveral táimz óuver dê íers"},
-    ]},
-    {q:"Where will you be staying?",pt:"Onde você vai ficar hospedado?",answers:[
-      {pt:"Na casa dos meus filhos aqui em Londres.",en:"At my children's home here in London.",ph:"at mái tchíldronz hóum hír in lándon"},
-      {pt:"Na casa dos meus primos.",en:"At my cousins' place.",ph:"at mái cázinz plêis"},
-      {pt:"Com minha família. Eles têm casa aqui.",en:"With my family. They have a home here.",ph:"with mái féimili. dêi háv a hóum hír"},
-      {pt:"Meus filhos são donos de um restaurante e têm casa próxima.",en:"My children own a restaurant and have a home nearby.",ph:"mái tchíldren óun a réstront and háv a hóum níerbái"},
-      {pt:"Na casa da minha família que mora aqui há anos.",en:"At my family's home, they've lived here for years.",ph:"at mái féimiliz hóum, dêiv livd hír for íers"},
-      {pt:"Vou ficar com meus parentes residentes aqui.",en:"I'll stay with my relatives who are residents here.",ph:"áil stêi with mái rélotivs huu ar rézidents hír"},
-      {pt:"Com minha prima que mora em Londres.",en:"With my cousin who lives in London.",ph:"with mái cázin huu livz in lándon"},
-      {pt:"Em casa de familiar. Aqui está o endereço.",en:"At a family member's home. Here is the address.",ph:"at a féimili mémberz hóum. hír iz di édrês"},
-      {pt:"Com meu filho que é residente britânico.",en:"With my son who is a British resident.",ph:"with mái sán huu iz a brítish rézident"},
-      {pt:"Minha família tem propriedade aqui, vou ficar com eles.",en:"My family owns property here, I'll stay with them.",ph:"mái féimili óunz próperty hír, áil stêi with dem"},
-    ]},
-    {q:"Do you have any goods to declare?",pt:"Você tem algo a declarar?",answers:[
-      {pt:"Não, não tenho nada a declarar.",en:"No, I have nothing to declare.",ph:"nóu, ái háv náthing tu diklér"},
-      {pt:"Tenho presentes para minha família.",en:"I have gifts for my family.",ph:"ái háv guifts for mái féimili"},
-      {pt:"Só tenho itens pessoais e presentes.",en:"I only have personal items and gifts.",ph:"ái óunli háv pérsonol áitems and guifts"},
-      {pt:"Não tenho nada acima dos limites permitidos.",en:"I have nothing above the permitted limits.",ph:"ái háv náthing abáv dê permitid límits"},
-      {pt:"Tenho alguns alimentos brasileiros para minha família.",en:"I have some Brazilian food items for my family.",ph:"ái háv sam brozílion fuud áitems for mái féimili"},
-      {pt:"Só bagagem pessoal e lembranças do Brasil.",en:"Just personal luggage and souvenirs from Brazil.",ph:"djást pérsonol lágidj and súuvenirs from brozíl"},
-      {pt:"Tenho dinheiro em espécie, mas dentro do limite.",en:"I have cash, but within the limit.",ph:"ái háv késh, bat uithin dê límit"},
-      {pt:"Não, só roupas e itens pessoais.",en:"No, just clothes and personal items.",ph:"nóu, djást klóudz and pérsonol áitems"},
-      {pt:"Sim, tenho presentes e lembranças do Brasil.",en:"Yes, I have gifts and souvenirs from Brazil.",ph:"iés, ái háv guifts and súuvenirs from brozíl"},
-      {pt:"Não tenho nada além de bagagem normal.",en:"I have nothing beyond normal baggage.",ph:"ái háv náthing biónd nórmal légidj"},
-    ]},
-  ]},
+  icon(name, size, sw){
+    const e = React.createElement;
+    const sz = size || 18, w = sw || 1.9;
+    let kids = [], fill = false;
+    switch(name){
+      case 'plane': kids=[e('path',{key:0,d:'M17.8 19.2 16 11l3.5-3.5c1-1 1-2.6 0-3.5s-2.5-1-3.5 0L12.5 7.5 4.4 5.7c-.4-.1-.7.4-.4.7l3.1 3.6-2 2-1.6-.4c-.3-.1-.6.3-.4.6l1.9 1.9 1.9 1.9c.3.2.7-.1.6-.4l-.4-1.6 2-2 3.6 3.1c.3.3.8 0 .7-.4z'})]; break;
+      case 'cart': kids=[e('circle',{key:0,cx:9,cy:20,r:1.3}),e('circle',{key:1,cx:18,cy:20,r:1.3}),e('path',{key:2,d:'M2 3h2l2.6 12.4c.2.9 1 1.6 2 1.6h9.8c1 0 1.8-.7 1.9-1.6L22 7H6'})]; break;
+      case 'health': kids=[e('path',{key:0,d:'M20 14c1.4-1.5 2-3 2-4.7A4.8 4.8 0 0 0 17.2 4.5c-1.7 0-3 .8-4.2 2.1l-1 .9-1-.9C9.8 5.3 8.5 4.5 6.8 4.5A4.8 4.8 0 0 0 2 9.3c0 1.7.6 3.2 2 4.7l8 8z'}),e('path',{key:1,d:'M2.6 12.5h5l1.4-3 2.5 6 2-8 1.7 5h5.2'})]; break;
+      case 'train': kids=[e('rect',{key:0,x:4,y:3,width:16,height:14,rx:3}),e('path',{key:1,d:'M4 11h16'}),e('path',{key:2,d:'M12 3v8'}),e('path',{key:3,d:'m7 17-2 4'}),e('path',{key:4,d:'m17 21-2-4'}),e('circle',{key:5,cx:8.5,cy:14,r:0.7,fill:'currentColor',stroke:'none'}),e('circle',{key:6,cx:15.5,cy:14,r:0.7,fill:'currentColor',stroke:'none'})]; break;
+      case 'coffee': kids=[e('path',{key:0,d:'M16 8h1.5a3 3 0 0 1 0 6H16'}),e('path',{key:1,d:'M3 8h13v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z'}),e('path',{key:2,d:'M6 2v2.4'}),e('path',{key:3,d:'M10 2v2.4'}),e('path',{key:4,d:'M14 2v2.4'})]; break;
+      default: kids=[];
+    }
+    return e('svg',{width:sz,height:sz,viewBox:'0 0 24 24',fill:fill?'currentColor':'none',stroke:fill?'none':'currentColor',strokeWidth:w,strokeLinecap:'round',strokeLinejoin:'round','aria-hidden':true,style:{display:'block',flex:'none'}}, kids);
+  }
+  SCENE_ICON = { airport:'plane', daily:'cart', health:'health', transport:'train', restaurant:'coffee' };
 
-  daily:{label:'Dia a dia / Compras',icon:'🛒',color:'#1a56a0',questions:[
-    {q:"Do you have a loyalty card?",pt:"Você tem cartão fidelidade?",answers:[
-      {pt:"Não, não tenho.",en:"No, I don't.",ph:"nóu, ái dóunt"},
-      {pt:"Sim, aqui está.",en:"Yes, here it is.",ph:"iés, hír it iz"},
-      {pt:"Não, obrigado.",en:"No, thank you.",ph:"nóu, thénk yu"},
-      {pt:"Não tenho ainda, como faço para ter?",en:"Not yet, how do I get one?",ph:"nót iét, háu du ái guét uán?"},
-      {pt:"Sim, tenho o cartão Clubcard.",en:"Yes, I have a Clubcard.",ph:"iés, ái háv a kláb kard"},
-      {pt:"Ainda não, acabei de chegar.",en:"Not yet, I just arrived.",ph:"nót iét, ái djást arráivd"},
-      {pt:"Não sei o que é isso.",en:"I'm not sure what that is.",ph:"áim nót shúr uót dat iz"},
-      {pt:"Sim, tenho o aplicativo no celular.",en:"Yes, I have the app on my phone.",ph:"iés, ái háv di áp on mái fóun"},
-      {pt:"Não, pode me explicar como funciona?",en:"No, can you explain how it works?",ph:"nóu, kán yu iksplêin háu it uérks?"},
-      {pt:"Sim, deixa eu procurar na carteira.",en:"Yes, let me check my wallet.",ph:"iés, lét mi tchék mái uólit"},
-    ]},
-    {q:"Would you like a bag?",pt:"Gostaria de uma sacola?",answers:[
-      {pt:"Sim, por favor.",en:"Yes, please.",ph:"iés, plíiz"},
-      {pt:"Não, obrigado, tenho minha própria.",en:"No thanks, I have my own.",ph:"nóu thénks, ái háv mái óun"},
-      {pt:"Sim, uma sacola está ótimo.",en:"Yes, one bag is fine.",ph:"iés, uán bég iz fáin"},
-      {pt:"Não preciso, obrigado.",en:"No need, thank you.",ph:"nóu níid, thénk yu"},
-      {pt:"Sim, duas por favor.",en:"Yes, two please.",ph:"iés, tuu plíiz"},
-      {pt:"Não, tenho minha sacola reutilizável.",en:"No, I have my reusable bag.",ph:"nóu, ái háv mái riúuzabol bég"},
-      {pt:"Sim, tem sacola grande?",en:"Yes, do you have a large bag?",ph:"iés, du yu háv a lardj bég?"},
-      {pt:"Pode me dar uma sacola maior?",en:"Could I have a bigger bag?",ph:"kud ái háv a bíger bég?"},
-      {pt:"Não, tudo bem assim.",en:"No, it's okay.",ph:"nóu, its okêi"},
-      {pt:"Sim, por favor, tenho muita coisa.",en:"Yes please, I have a lot of things.",ph:"iés plíiz, ái háv a lót ov things"},
-    ]},
-    {q:"How would you like to pay?",pt:"Como gostaria de pagar?",answers:[
-      {pt:"No cartão de crédito, por favor.",en:"By credit card, please.",ph:"bái krédit kard plíiz"},
-      {pt:"Em dinheiro.",en:"In cash.",ph:"in késh"},
-      {pt:"Por aproximação.",en:"Contactless, please.",ph:"kontáktles plíiz"},
-      {pt:"No débito.",en:"Debit card, please.",ph:"débit kard plíiz"},
-      {pt:"No crédito.",en:"Credit card, please.",ph:"krédit kard plíiz"},
-      {pt:"Pelo Apple Pay.",en:"Apple Pay, please.",ph:"épol pêi plíiz"},
-      {pt:"Dinheiro vivo mesmo.",en:"Cash, please.",ph:"késh plíiz"},
-      {pt:"Tem maquininha de cartão?",en:"Do you have a card machine?",ph:"du yu háv a kard mashíin?"},
-      {pt:"Aceita cartão internacional?",en:"Do you accept international cards?",ph:"du yu aksépt internaeshonol kardz?"},
-      {pt:"Prefiro pagar em dinheiro.",en:"I'd rather pay in cash.",ph:"áid ráder pêi in késh"},
-    ]},
-    {q:"Do you need help finding anything?",pt:"Precisa de ajuda para encontrar algo?",answers:[
-      {pt:"Sim, onde fica o pão?",en:"Yes, where is the bread aisle?",ph:"iés, uér iz dê bréd áil?"},
-      {pt:"Não, estou bem, obrigado.",en:"No, I'm fine, thank you.",ph:"nóu, áim fáin, thénk yu"},
-      {pt:"Sim, procuro a seção de laticínios.",en:"Yes, I'm looking for the dairy section.",ph:"iés, áim lúking for dê déiri sékshon"},
-      {pt:"Sim, onde fica a farmácia?",en:"Yes, where is the pharmacy?",ph:"iés, uér iz dê fármasi?"},
-      {pt:"Sim, estou procurando produtos de limpeza.",en:"Yes, I'm looking for cleaning products.",ph:"iés, áim lúking for klíining pródakts"},
-      {pt:"Sim, tem produtos brasileiros?",en:"Yes, do you have any Brazilian products?",ph:"iés, du yu háv éni brozílion pródakts?"},
-      {pt:"Não, já encontrei o que precisava.",en:"No, I found what I needed.",ph:"nóu, ái fáund uót ái níidid"},
-      {pt:"Sim, onde fica o caixa?",en:"Yes, where is the checkout?",ph:"iés, uér iz dê tchékaut?"},
-      {pt:"Sim, procuro frutas frescas.",en:"Yes, I'm looking for fresh fruit.",ph:"iés, áim lúking for fresh fruut"},
-      {pt:"Pode me ajudar a encontrar esse produto?",en:"Could you help me find this product?",ph:"kud yu hélp mi fáind dis pródakt?"},
-    ]},
-    {q:"Is that everything for you today?",pt:"É tudo por hoje?",answers:[
-      {pt:"Sim, é tudo. Obrigado.",en:"Yes, that's everything. Thank you.",ph:"iés, dats évrithing. thénk yu"},
-      {pt:"Sim, pode finalizar.",en:"Yes, please go ahead.",ph:"iés, plíiz góu ahéd"},
-      {pt:"Na verdade, esqueci de pegar algo.",en:"Actually, I forgot to get something.",ph:"áktuali, ái forgót tu guét sámthing"},
-      {pt:"Sim, só isso mesmo.",en:"Yes, just this.",ph:"iés, djást dis"},
-      {pt:"Deixa eu ver... sim, é tudo.",en:"Let me think... yes, that's all.",ph:"lét mi think... iés, dats ól"},
-      {pt:"Pode incluir uma garrafa de água?",en:"Can you add a bottle of water?",ph:"kán yu éd a bótol ov uóter?"},
-      {pt:"Sim, pode fechar.",en:"Yes, that's it.",ph:"iés, dats it"},
-      {pt:"Espera, quero pegar mais uma coisa.",en:"Wait, I want to grab one more thing.",ph:"uêit, ái uónt tu gréb uán mor thing"},
-      {pt:"Sim, só esses itens.",en:"Yes, just these items.",ph:"iés, djást díiz áitems"},
-      {pt:"Sim, obrigado pela ajuda.",en:"Yes, thanks for your help.",ph:"iés, thénks for iór hélp"},
-    ]},
-    {q:"Do you have ID on you?",pt:"Você está com documento de identidade?",answers:[
-      {pt:"Sim, aqui está meu passaporte.",en:"Yes, here is my passport.",ph:"iés, hír iz mái pásport"},
-      {pt:"Tenho minha carteira de motorista.",en:"I have my driving licence.",ph:"ái háv mái dráiving láisens"},
-      {pt:"Sim, aqui está.",en:"Yes, here you go.",ph:"iés, hír yu góu"},
-      {pt:"Não estou com documento agora.",en:"I don't have ID on me right now.",ph:"ái dóunt háv ái díi on mi ráit náu"},
-      {pt:"Tenho uma foto do documento no celular.",en:"I have a photo of my ID on my phone.",ph:"ái háv a fóutou ov mái ái díi on mái fóun"},
-      {pt:"Tenho minha carteira de residência.",en:"I have my residence card.",ph:"ái háv mái rézidons kard"},
-      {pt:"Pode aceitar meu passaporte?",en:"Can you accept my passport?",ph:"kán yu aksép mái pásport?"},
-      {pt:"Tenho meu passaporte na mochila.",en:"My passport is in my backpack.",ph:"mái pásport iz in mái békpak"},
-      {pt:"Aqui está meu passaporte brasileiro.",en:"Here is my Brazilian passport.",ph:"hír iz mái brozílion pásport"},
-      {pt:"Aqui está meu documento.",en:"Here is my ID document.",ph:"hír iz mái ái díi dókiument"},
-    ]},
-    {q:"Would you like a receipt?",pt:"Gostaria do recibo?",answers:[
-      {pt:"Sim, por favor.",en:"Yes, please.",ph:"iés, plíiz"},
-      {pt:"Não, não preciso. Obrigado.",en:"No, that's okay. Thank you.",ph:"nóu, dats okêi. thénk yu"},
-      {pt:"Pode mandar por e-mail?",en:"Can you send it by email?",ph:"kán yu sénd it bái íimêil?"},
-      {pt:"Sim, preciso para guardar.",en:"Yes, I'd like to keep it.",ph:"iés, áid láik tu kíip it"},
-      {pt:"Não precisa, obrigado.",en:"No need, thanks.",ph:"nóu níid, thénks"},
-      {pt:"Sim, pode imprimir.",en:"Yes, please print it.",ph:"iés, plíiz print it"},
-      {pt:"Tem recibo digital?",en:"Do you have a digital receipt?",ph:"du yu háv a dídjital risíit?"},
-      {pt:"Sim, sempre guardo o comprovante.",en:"Yes, I always keep the receipt.",ph:"iés, ái ólueiz kíip dê risíit"},
-      {pt:"Não, pode descartar.",en:"No, you can throw it away.",ph:"nóu, yu kán thróu it awêi"},
-      {pt:"Sim, por favor.",en:"Yes please.",ph:"iés plíiz"},
-    ]},
-    {q:"We don't have that in stock. Can I help with something else?",pt:"Não temos em estoque. Posso ajudar com outra coisa?",answers:[
-      {pt:"Tudo bem, obrigado assim mesmo.",en:"That's fine, thank you anyway.",ph:"dats fáin, thénk yu éniwêi"},
-      {pt:"Quando vocês vão repor o estoque?",en:"When will you restock?",ph:"uén uil yu riistók?"},
-      {pt:"Tem algo parecido disponível?",en:"Do you have something similar?",ph:"du yu háv sámthing símiler?"},
-      {pt:"Pode verificar em outra loja?",en:"Can you check another branch?",ph:"kán yu tchék anáder brânch?"},
-      {pt:"Tem previsão de chegar mais?",en:"Do you know when it will be available?",ph:"du yu nóu uén it uil bi avêilabol?"},
-      {pt:"Pode fazer um pedido para mim?",en:"Can you order it for me?",ph:"kán yu órder it for mi?"},
-      {pt:"Ok, vou tentar em outra loja.",en:"Okay, I'll try another store.",ph:"okêi, áil trái anáder stór"},
-      {pt:"Tem outro tamanho disponível?",en:"Do you have a different size?",ph:"du yu háv a díferent sáiz?"},
-      {pt:"Pode avisar quando chegar?",en:"Can you let me know when it arrives?",ph:"kán yu lét mi nóu uén it arráivz?"},
-      {pt:"Não, tudo bem. Vou ver online.",en:"No, it's okay. I'll check online.",ph:"nóu, its okêi. áil tchék onláin"},
-    ]},
-    {q:"The total comes to twelve pounds fifty.",pt:"O total é doze libras e cinquenta.",answers:[
-      {pt:"Aqui está em dinheiro.",en:"Here you go, in cash.",ph:"hír yu góu, in késh"},
-      {pt:"Vou pagar no cartão de crédito.",en:"I'll pay by credit card.",ph:"áil pêi bái krédit kard"},
-      {pt:"Tem troco para vinte libras?",en:"Do you have change for twenty pounds?",ph:"du yu háv tchêindj for tuénti páundz?"},
-      {pt:"Posso pagar por aproximação?",en:"Can I pay contactless?",ph:"kán ái pêi kontáktles?"},
-      {pt:"Aqui está, contei certinho.",en:"Here you are, exact change.",ph:"hír yu ar, igzékt tchêindj"},
-      {pt:"Pode repetir o valor?",en:"Could you repeat the total?",ph:"kud yu ripíit dê tóutol?"},
-      {pt:"Só tenho nota de cinquenta.",en:"I only have a fifty-pound note.",ph:"ái óunli háv a fíftii páund nóut"},
-      {pt:"Aqui, pode ficar com o troco.",en:"Here, keep the change.",ph:"hír, kíip dê tchêindj"},
-      {pt:"Vou pagar em dinheiro vivo.",en:"I'll pay in cash.",ph:"áil pêi in késh"},
-      {pt:"Posso pagar com dois cartões?",en:"Can I split payment between two cards?",ph:"kán ái split pêiment bitwíin tuu kardz?"},
-    ]},
-    {q:"Do you want to enter your PIN?",pt:"Quer digitar seu PIN?",answers:[
-      {pt:"Sim, pode digitar.",en:"Yes, of course.",ph:"iés, ov córs"},
-      {pt:"A máquina aceita aproximação?",en:"Does the machine accept contactless?",ph:"daz dê mashíin aksép kontáktles?"},
-      {pt:"Sim, um momento.",en:"Yes, just a moment.",ph:"iés, djást a móument"},
-      {pt:"Não funciona por aproximação?",en:"Doesn't it work contactless?",ph:"dáznt it uérk kontáktles?"},
-      {pt:"Claro, pode passar a máquina.",en:"Sure, pass me the machine.",ph:"shúr, pás mi dê mashíin"},
-      {pt:"Não me lembro do PIN agora.",en:"I don't remember my PIN right now.",ph:"ái dóunt rimémber mái pin ráit náu"},
-      {pt:"Pode ser pelo celular?",en:"Can I use my phone instead?",ph:"kán ái iúuz mái fóun instéd?"},
-      {pt:"Sim, aqui está.",en:"Yes, here you go.",ph:"iés, hír yu góu"},
-      {pt:"Ok, vou digitar o PIN.",en:"Okay, I'll enter my PIN.",ph:"okêi, áil énter mái pin"},
-      {pt:"Prefiro pagar em dinheiro então.",en:"I'll pay in cash instead.",ph:"áil pêi in késh instéd"},
-    ]},
-  ]},
+  cur(){ return this.DATA[this.state.scene]; }
+  curQ(){ return this.cur().questions[this.state.idx]; }
+  curAns(){ const s = this.state.sel; return s === '' ? null : this.curQ().answers[parseInt(s)]; }
 
-  health:{label:'Saúde / Hospital',icon:'🏥',color:'#c8102e',questions:[
-    {q:"What seems to be the problem?",pt:"Qual parece ser o problema?",answers:[
-      {pt:"Estou com forte dor de cabeça e febre.",en:"I have a strong headache and fever.",ph:"ái háv a stróng hédêik and fíiver"},
-      {pt:"Estou me sentindo muito mal.",en:"I'm feeling very unwell.",ph:"áim fíiling véri anuél"},
-      {pt:"Torci meu tornozelo.",en:"I've twisted my ankle.",ph:"áiv tuístid mái énkol"},
-      {pt:"Estou com muita tosse há dias.",en:"I've had a bad cough for days.",ph:"áiv hád a béd kof for dêiz"},
-      {pt:"Sinto dor no peito.",en:"I have chest pain.",ph:"ái háv tchést pêin"},
-      {pt:"Cortei minha mão e precisa de pontos.",en:"I've cut my hand and it needs stitches.",ph:"áiv kát mái hend and it níidz stítchez"},
-      {pt:"Estou com dor de ouvido intensa.",en:"I have a severe earache.",ph:"ái háv a sivíer íerêik"},
-      {pt:"Estou com reação alérgica.",en:"I'm having an allergic reaction.",ph:"áim héving an alérdjik riákshon"},
-      {pt:"Machuquei meu joelho.",en:"I've hurt my knee.",ph:"áiv hért mái níi"},
-      {pt:"Estou com muita tontura.",en:"I'm feeling very dizzy.",ph:"áim fíiling véri dízi"},
-    ]},
-    {q:"Are you registered with a GP?",pt:"Você está cadastrado em um clínico geral?",answers:[
-      {pt:"Não, sou turista e estou visitando minha família.",en:"No, I'm a tourist visiting my family.",ph:"nóu, áim a túrist víziting mái féimili"},
-      {pt:"Não, estou hospedado na casa dos meus filhos.",en:"No, I'm staying at my children's home.",ph:"nóu, áim stêing at mái tchíldronz hóum"},
-      {pt:"Não, como faço para me registrar temporariamente?",en:"No, how do I register temporarily?",ph:"nóu, háu du ái rédjister témpórerili?"},
-      {pt:"Não tenho médico aqui, sou visitante.",en:"I don't have a GP here, I'm a visitor.",ph:"ái dóunt háv a djíi píi hír, áim a vízitor"},
-      {pt:"Não, vim direto para a emergência.",en:"No, I came straight to A&E.",ph:"nóu, ái kêim strêit tu êi end íi"},
-      {pt:"Não, minha família pode me ajudar a me registrar?",en:"No, can my family help me register?",ph:"nóu, kán mái féimili hélp mi rédjister?"},
-      {pt:"Não, estou aqui de visita.",en:"No, I'm here on a visit.",ph:"nóu, áim hír on a vízit"},
-      {pt:"Não sei o que é GP.",en:"I'm not sure what a GP is.",ph:"áim nót shúr uót a djíi píi iz"},
-      {pt:"Não, sou brasileiro de visita.",en:"No, I'm a Brazilian visitor.",ph:"nóu, áim a brozílion vízitor"},
-      {pt:"Não, estou aqui há poucos dias.",en:"No, I've only been here a few days.",ph:"nóu, áiv óunli biin hír a fiú dêiz"},
-    ]},
-    {q:"Do you have any allergies?",pt:"Você tem alguma alergia?",answers:[
-      {pt:"Não tenho alergias conhecidas.",en:"I have no known allergies.",ph:"ái háv nóu nóun alérdjiz"},
-      {pt:"Sou alérgico à penicilina.",en:"I'm allergic to penicillin.",ph:"áim alérdjik tu penisílin"},
-      {pt:"Tenho alergia a frutos do mar.",en:"I'm allergic to seafood.",ph:"áim alérdjik tu síifuud"},
-      {pt:"Sou alérgico a amendoim.",en:"I'm allergic to peanuts.",ph:"áim alérdjik tu píinats"},
-      {pt:"Tenho alergia a látex.",en:"I'm allergic to latex.",ph:"áim alérdjik tu lêiteks"},
-      {pt:"Sou intolerante à lactose.",en:"I'm lactose intolerant.",ph:"áim láktous intólerent"},
-      {pt:"Tenho alergia a alguns antibióticos.",en:"I'm allergic to some antibiotics.",ph:"áim alérdjik tu sam entibaiótics"},
-      {pt:"Tenho alergia a aspirina.",en:"I'm allergic to aspirin.",ph:"áim alérdjik tu áspirin"},
-      {pt:"Sou alérgico a picadas de abelha.",en:"I'm allergic to bee stings.",ph:"áim alérdjik tu bíi stings"},
-      {pt:"Tenho alergia sazonal.",en:"I have seasonal allergies.",ph:"ái háv síizonol alérdjiz"},
-    ]},
-    {q:"Are you currently taking any medication?",pt:"Está tomando algum medicamento?",answers:[
-      {pt:"Sim, tomo remédio para pressão alta.",en:"Yes, I take medication for high blood pressure.",ph:"iés, ái têik medikêishon for hái blád présher"},
-      {pt:"Não, não tomo nenhum medicamento.",en:"No, I'm not taking any medication.",ph:"nóu, áim nót têiking éni medikêishon"},
-      {pt:"Tomo antidepressivos.",en:"I take antidepressants.",ph:"ái têik antidiprésonts"},
-      {pt:"Uso insulina para diabetes.",en:"I use insulin for diabetes.",ph:"ái iúuz ínsulin for daiabíitis"},
-      {pt:"Tomo remédio para tireoide.",en:"I take thyroid medication.",ph:"ái têik tháiroid medikêishon"},
-      {pt:"Uso inalador para asma.",en:"I use an inhaler for asthma.",ph:"ái iúuz an inhêiler for ázma"},
-      {pt:"Tomo vitaminas diariamente.",en:"I take vitamins daily.",ph:"ái têik váitaminz dêili"},
-      {pt:"Sim, aqui está a lista de medicamentos.",en:"Yes, here is my list of medications.",ph:"iés, hír iz mái list ov medikêishons"},
-      {pt:"Tomo remédio para colesterol.",en:"I take cholesterol medication.",ph:"ái têik koléstorol medikêishon"},
-      {pt:"Tomo remédio para o coração.",en:"I take heart medication.",ph:"ái têik hart medikêishon"},
-    ]},
-    {q:"Can you rate your pain from one to ten?",pt:"Pode classificar sua dor de um a dez?",answers:[
-      {pt:"É uns sete, bastante forte.",en:"About a seven, it's quite strong.",ph:"abáut a séven, its kuáit stróng"},
-      {pt:"É um dez, insuportável.",en:"It's a ten, unbearable.",ph:"its a tén, anbérabol"},
-      {pt:"É uns cinco, moderado.",en:"About a five, moderate.",ph:"abáut a fáiv, móderet"},
-      {pt:"É uns três, tolerável.",en:"About a three, manageable.",ph:"abáut a thrí, ménedjiabol"},
-      {pt:"É uns oito, muito forte.",en:"About an eight, very strong.",ph:"abáut an êit, véri stróng"},
-      {pt:"É um dois, leve.",en:"About a two, quite mild.",ph:"abáut a tuu, kuáit máild"},
-      {pt:"Varia entre cinco e oito.",en:"It varies between five and eight.",ph:"it vériiz bitwíin fáiv and êit"},
-      {pt:"É uns seis, dói bastante.",en:"About a six, it's quite painful.",ph:"abáut a siks, its kuáit pêinful"},
-      {pt:"Está piorando, era três e agora é sete.",en:"It's getting worse, was three now it's seven.",ph:"its guéting uérs, uóz thrí náu its séven"},
-      {pt:"É uns quatro, consigo suportar.",en:"About a four, I can manage.",ph:"abáut a fór, ái kán méneodj"},
-    ]},
-    {q:"How long have you had these symptoms?",pt:"Há quanto tempo tem esses sintomas?",answers:[
-      {pt:"Desde ontem à noite.",en:"Since last night.",ph:"sins last náit"},
-      {pt:"Há três dias.",en:"For three days.",ph:"for thrí dêiz"},
-      {pt:"Começou há uma semana.",en:"It started about a week ago.",ph:"it stártid abáut a uíik agóu"},
-      {pt:"Começou hoje de manhã.",en:"It started this morning.",ph:"it stártid dis móorning"},
-      {pt:"Há dois dias mais ou menos.",en:"About two days.",ph:"abáut tuu dêiz"},
-      {pt:"Sinto isso há um mês.",en:"I've had this for a month.",ph:"áiv hád dis for a mánth"},
-      {pt:"Começou há algumas horas.",en:"It started a few hours ago.",ph:"it stártid a fiú áuers agóu"},
-      {pt:"Tenho esses sintomas há anos.",en:"I've had these symptoms for years.",ph:"áiv hád díiz símptons for íers"},
-      {pt:"Piorou muito nas últimas horas.",en:"It's gotten much worse in the last few hours.",ph:"its góton mátch uérs in dê last fiú áuers"},
-      {pt:"Não sei ao certo quando começou.",en:"I'm not sure exactly when it started.",ph:"áim nót shúr igzáktli uén it stártid"},
-    ]},
-    {q:"Do you have your NHS number?",pt:"Você tem seu número do NHS?",answers:[
-      {pt:"Não, sou turista visitando minha família.",en:"No, I'm a tourist visiting my family.",ph:"nóu, áim a túrist víziting mái féimili"},
-      {pt:"Não tenho, sou visitante do Brasil.",en:"I don't have one, I'm visiting from Brazil.",ph:"ái dóunt háv uán, áim víziting from brozíl"},
-      {pt:"Como posso obter atendimento sendo turista?",en:"How can I get treatment as a tourist?",ph:"háu kán ái guét tríitment az a túrist?"},
-      {pt:"Não, minha família pode me ajudar com isso?",en:"No, can my family help me with this?",ph:"nóu, kán mái féimili hélp mi with dis?"},
-      {pt:"Não, cheguei há poucos dias.",en:"No, I arrived just a few days ago.",ph:"nóu, ái arráivd djást a fiú dêiz agóu"},
-      {pt:"Não, tenho seguro viagem.",en:"No, I have travel insurance.",ph:"nóu, ái háv trável inshúrans"},
-      {pt:"Não, pode verificar como proceder?",en:"No, can you check how to proceed?",ph:"nóu, kán yu tchék háu tu prosíid?"},
-      {pt:"Não sei o que é isso, pode me explicar?",en:"I'm not sure what that is, can you explain?",ph:"áim nót shúr uót dat iz, kán yu iksplêin?"},
-      {pt:"Não, vim do Brasil esta semana.",en:"No, I came from Brazil this week.",ph:"nóu, ái kêim from brozíl dis uíik"},
-      {pt:"Não, sou visitante temporário.",en:"No, I'm a temporary visitor.",ph:"nóu, áim a témpóreri vízitor"},
-    ]},
-    {q:"Are you pregnant or could you be pregnant?",pt:"Você está ou pode estar grávida?",answers:[
-      {pt:"Não, não estou grávida.",en:"No, I am not pregnant.",ph:"nóu, ái am nót prégnent"},
-      {pt:"Sim, estou grávida de três meses.",en:"Yes, I'm three months pregnant.",ph:"iés, áim thrí mánths prégnent"},
-      {pt:"Não é possível, sou homem.",en:"No, I'm male.",ph:"nóu, áim mêil"},
-      {pt:"Não sei, pode ser.",en:"I'm not sure, possibly.",ph:"áim nót shúr, pósioli"},
-      {pt:"Não, fiz exame recentemente.",en:"No, I had a test recently.",ph:"nóu, ái hád a tést ríisontli"},
-      {pt:"Não, uso anticoncepcional.",en:"No, I'm on contraception.",ph:"nóu, áim on kontrasépshn"},
-      {pt:"Passei pela menopausa.",en:"I've been through menopause.",ph:"áiv biin thruu ménopóuz"},
-      {pt:"Não, não é possível.",en:"No, that's not possible.",ph:"nóu, dats nót pósibol"},
-      {pt:"Não, tenho certeza.",en:"No, I'm certain.",ph:"nóu, áim sérten"},
-      {pt:"Sim, estou no segundo trimestre.",en:"Yes, I'm in my second trimester.",ph:"iés, áim in mái sékond tráimester"},
-    ]},
-    {q:"Have you had this before?",pt:"Você já teve isso antes?",answers:[
-      {pt:"Não, é a primeira vez.",en:"No, this is the first time.",ph:"nóu, dis iz dê férst táim"},
-      {pt:"Sim, tenho isso com frequência.",en:"Yes, I get this quite often.",ph:"iés, ái guét dis kuáit ófen"},
-      {pt:"Sim, mas nunca tão forte.",en:"Yes, but never this severe.",ph:"iés, bat névər dis sivíir"},
-      {pt:"Não que eu me lembre.",en:"Not that I recall.",ph:"nót dat ái rikól"},
-      {pt:"Sim, acontece todo ano.",en:"Yes, it happens every year.",ph:"iés, it hépenz évri íer"},
-      {pt:"Tive algo parecido ano passado.",en:"I had something similar last year.",ph:"ái hád sámthing símiler last íer"},
-      {pt:"Sim, já fiz tratamento para isso.",en:"Yes, I've had treatment for this before.",ph:"iés, áiv hád tríitment for dis bifór"},
-      {pt:"Não, nunca.",en:"No, never.",ph:"nóu, névər"},
-      {pt:"Sim, mas resolveu sozinho antes.",en:"Yes, but it resolved on its own before.",ph:"iés, bat it rizólvd on its óun bifór"},
-      {pt:"Mais ou menos, mas diferente.",en:"Sort of, but it felt different.",ph:"sórt ov, bat it félt díferent"},
-    ]},
-    {q:"We'll need to take some blood tests.",pt:"Precisaremos fazer exames de sangue.",answers:[
-      {pt:"Tudo bem, pode fazer.",en:"Okay, that's fine.",ph:"okêi, dats fáin"},
-      {pt:"Quanto tempo demora o resultado?",en:"How long will the results take?",ph:"háu long uil dê rizálts têik?"},
-      {pt:"Tenho medo de agulha.",en:"I'm afraid of needles.",ph:"áim afréid ov níidolz"},
-      {pt:"Preciso estar em jejum?",en:"Do I need to fast?",ph:"du ái níid tu fást?"},
-      {pt:"Onde fazem a coleta?",en:"Where do I go for the blood test?",ph:"uér du ái góu for dê blád tést?"},
-      {pt:"Pode me dar as instruções por escrito?",en:"Can you give me the instructions in writing?",ph:"kán yu guív mi di instrákshons in ráiting?"},
-      {pt:"Ok, quando devo vir?",en:"Okay, when should I come in?",ph:"okêi, uén shud ái kám in?"},
-      {pt:"Posso fazer hoje mesmo?",en:"Can I do it today?",ph:"kán ái du it tudêi?"},
-      {pt:"Minha família pode me acompanhar?",en:"Can my family come with me?",ph:"kán mái féimili kám with mi?"},
-      {pt:"Ok, minha família me ajudará com isso.",en:"Okay, my family will help me with that.",ph:"okêi, mái féimili uil hélp mi with dat"},
-    ]},
-  ]},
+  stopSpeech(){ if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
+  speak(text, which){
+    if (!('speechSynthesis' in window) || !text) return;
+    this.stopSpeech();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB'; u.rate = 1.0; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const kate = voices.find(v => v.name.includes('Kate'))
+      || voices.find(v => v.lang === 'en-GB' && /female|kate|serena|stephanie/i.test(v.name))
+      || voices.find(v => v.lang === 'en-GB');
+    if (kate) u.voice = kate;
+    u.onend = u.onerror = () => { if (this.state.speaking === which) this.setState({ speaking:null }); };
+    this.setState({ speaking:which });
+    window.speechSynthesis.speak(u);
+  }
 
-  transport:{label:'Transporte público',icon:'🚇',color:'#1a56a0',questions:[
-    {q:"Which line do you need?",pt:"Qual linha você precisa?",answers:[
-      {pt:"Preciso da linha Central.",en:"I need the Central line.",ph:"ái níid dê séntral láin"},
-      {pt:"Preciso da linha Jubilee.",en:"I need the Jubilee line.",ph:"ái níid dê djúubili láin"},
-      {pt:"Preciso da linha Northern.",en:"I need the Northern line.",ph:"ái níid dê nórdorn láin"},
-      {pt:"Preciso da linha Piccadilly.",en:"I need the Piccadilly line.",ph:"ái níid dê pikadíli láin"},
-      {pt:"Não sei qual linha pegar.",en:"I'm not sure which line to take.",ph:"áim nót shúr uítch láin tu têik"},
-      {pt:"Preciso ir para Heathrow.",en:"I need to get to Heathrow.",ph:"ái níid tu guét tu híthroo"},
-      {pt:"Qual linha vai para Victoria?",en:"Which line goes to Victoria?",ph:"uítch láin góuz tu viktória?"},
-      {pt:"Preciso da linha Elizabeth.",en:"I need the Elizabeth line.",ph:"ái níid di ilízabeth láin"},
-      {pt:"Preciso ir para London Bridge.",en:"I need to get to London Bridge.",ph:"ái níid tu guét tu lándon briídj"},
-      {pt:"Pode me ajudar a achar a linha certa?",en:"Can you help me find the right line?",ph:"kán yu hélp mi fáind dê ráit láin?"},
-    ]},
-    {q:"Do you have an Oyster card or contactless?",pt:"Você tem Oyster card ou pagamento por aproximação?",answers:[
-      {pt:"Tenho cartão de crédito por aproximação.",en:"I have a contactless credit card.",ph:"ái háv a kontáktles krédit kard"},
-      {pt:"Tenho Oyster card.",en:"I have an Oyster card.",ph:"ái háv an óister kard"},
-      {pt:"Não tenho nenhum dos dois.",en:"I don't have either.",ph:"ái dóunt háv íider"},
-      {pt:"Onde compro um Oyster card?",en:"Where can I buy an Oyster card?",ph:"uér kán ái bái an óister kard?"},
-      {pt:"Posso pagar com Apple Pay?",en:"Can I pay with Apple Pay?",ph:"kán ái pêi with épol pêi?"},
-      {pt:"Só tenho dinheiro vivo.",en:"I only have cash.",ph:"ái óunli háv késh"},
-      {pt:"Tenho cartão de crédito internacional.",en:"I have an international credit card.",ph:"ái háv an internaeshonol krédit kard"},
-      {pt:"Meu cartão de crédito funciona aqui?",en:"Does my credit card work here?",ph:"daz mái krédit kard uérk hír?"},
-      {pt:"Posso comprar passe mensal?",en:"Can I buy a monthly pass?",ph:"kán ái bái a mánthli pás?"},
-      {pt:"Pode me ajudar a usar a máquina?",en:"Can you help me use the machine?",ph:"kán yu hélp mi iúuz dê mashíin?"},
-    ]},
-    {q:"This train terminates here. Please exit.",pt:"Este trem termina aqui. Por favor, desembarque.",answers:[
-      {pt:"Com licença, qual trem pego agora?",en:"Excuse me, which train do I take now?",ph:"ikskiúuz mi, uítch trêin du ái têik náu?"},
-      {pt:"Tudo bem, vou desembarcar.",en:"Okay, I'll get off.",ph:"okêi, áil guét of"},
-      {pt:"Em qual plataforma fica o próximo trem?",en:"Which platform is the next train?",ph:"uítch plátform iz dê nékst trêin?"},
-      {pt:"Quanto tempo até o próximo trem?",en:"How long until the next train?",ph:"háu long antíl dê nékst trêin?"},
-      {pt:"Preciso mudar de linha aqui?",en:"Do I need to change lines here?",ph:"du ái níid tu tchêindj láinz hír?"},
-      {pt:"Ok, obrigado pelo aviso.",en:"Okay, thanks for the warning.",ph:"okêi, thénks for dê uórning"},
-      {pt:"Tem trem alternativo para o centro?",en:"Is there an alternative train to the centre?",ph:"iz dér an oltérnativ trêin tu dê sénter?"},
-      {pt:"Minha estação ainda está longe.",en:"My station is still far.",ph:"mái stêishon iz stil far"},
-      {pt:"Pode me indicar para onde ir?",en:"Can you point me in the right direction?",ph:"kán yu póint mi in dê ráit dirékshn?"},
-      {pt:"Obrigado, vou verificar o mapa.",en:"Thank you, I'll check the map.",ph:"thénk yu, áil tchék dê méip"},
-    ]},
-    {q:"Excuse me, is this seat taken?",pt:"Com licença, este assento está ocupado?",answers:[
-      {pt:"Não, pode sentar.",en:"No, go ahead.",ph:"nóu, góu ahéd"},
-      {pt:"Sim, estou guardando para alguém.",en:"Yes, I'm saving it for someone.",ph:"iés, áim sêiving it for sámuan"},
-      {pt:"Não, fique à vontade.",en:"No, feel free.",ph:"nóu, fíil frí"},
-      {pt:"Sim, meu colega vai voltar.",en:"Yes, my friend is coming back.",ph:"iés, mái frénd iz cáming bék"},
-      {pt:"Pode sentar, não tem problema.",en:"You can sit, no problem.",ph:"yu kán sit, nóu próblem"},
-      {pt:"Não, está livre.",en:"No, it's free.",ph:"nóu, its frí"},
-      {pt:"Não sei, a pessoa saiu.",en:"I'm not sure, the person left.",ph:"áim nót shúr, dê pérson léft"},
-      {pt:"Pode sentar, eles já foram.",en:"You can sit, they've already gone.",ph:"yu kán sit, dêiv ólredi gón"},
-      {pt:"Sim, mas o trem termina aqui.",en:"Yes, but the train ends here.",ph:"iés, bat dê trêin éndz hír"},
-      {pt:"Não, pode ficar à vontade.",en:"No, please go ahead.",ph:"nóu, plíiz góu ahéd"},
-    ]},
-    {q:"Could you move down the carriage, please?",pt:"Poderia avançar no vagão, por favor?",answers:[
-      {pt:"Claro, com licença.",en:"Of course, excuse me.",ph:"ov córs, ikskiúuz mi"},
-      {pt:"Desculpe, estou descendo na próxima.",en:"Sorry, I'm getting off at the next stop.",ph:"sóri, áim guéting of at dê nékst stóp"},
-      {pt:"Sim, um momento.",en:"Yes, just a second.",ph:"iés, djást a sékond"},
-      {pt:"Não consigo avançar, está muito cheio.",en:"I can't move, it's too crowded.",ph:"ái kânt múuv, its tuu kráudid"},
-      {pt:"Tudo bem, vou tentar.",en:"Okay, I'll try.",ph:"okêi, áil trái"},
-      {pt:"Desculpe, tenho muita bagagem.",en:"Sorry, I have a lot of luggage.",ph:"sóri, ái háv a lót ov lágidj"},
-      {pt:"Com licença, pode me deixar passar?",en:"Excuse me, can you let me through?",ph:"ikskiúuz mi, kán yu lét mi thruu?"},
-      {pt:"Sim, vou para o próximo espaço.",en:"Yes, I'll move to the next space.",ph:"iés, áil múuv tu dê nékst spêis"},
-      {pt:"Desculpe, não vi que atrapalhava.",en:"Sorry, I didn't realise I was in the way.",ph:"sóri, ái dídnt ríalaiz ái uóz in dê uêi"},
-      {pt:"Ok, mas está muito apertado.",en:"Okay, but it's very tight.",ph:"okêi, bat its véri táit"},
-    ]},
-    {q:"Where are you heading?",pt:"Para onde você está indo?",answers:[
-      {pt:"Vou para Oxford Street.",en:"I'm going to Oxford Street.",ph:"áim góuing tu óksferd stríit"},
-      {pt:"Vou para o aeroporto de Heathrow.",en:"I'm going to Heathrow Airport.",ph:"áim góuing tu híithroo érport"},
-      {pt:"Vou para o centro de Londres.",en:"I'm heading to central London.",ph:"áim héding tu séntrol lándon"},
-      {pt:"Vou visitar minha família.",en:"I'm going to visit my family.",ph:"áim góuing tu vízit mái féimili"},
-      {pt:"Vou ao restaurante da minha família.",en:"I'm going to my family's restaurant.",ph:"áim góuing tu mái féimiliz réstront"},
-      {pt:"Vou para Kings Cross.",en:"I'm heading to King's Cross.",ph:"áim héding tu kíngz krós"},
-      {pt:"Ainda não sei, estou perdido.",en:"I'm not sure, I'm a bit lost.",ph:"áim nót shúr, áim a bit lóst"},
-      {pt:"Vou para Stratford.",en:"I'm heading to Stratford.",ph:"áim héding tu strétford"},
-      {pt:"Vou para Victoria Station.",en:"I'm going to Victoria Station.",ph:"áim góuing tu viktória stêishon"},
-      {pt:"Vou para Camden Market.",en:"I'm heading to Camden Market.",ph:"áim héding tu kémden márket"},
-    ]},
-    {q:"Do you need a single or return ticket?",pt:"Precisa de passagem simples ou de ida e volta?",answers:[
-      {pt:"Só ida, por favor.",en:"A single, please.",ph:"a sínguel, plíiz"},
-      {pt:"Ida e volta, por favor.",en:"A return, please.",ph:"a ritérn, plíiz"},
-      {pt:"Qual a diferença de preço?",en:"What's the price difference?",ph:"uóts dê práis díferens?"},
-      {pt:"Só ida, vou voltar de ônibus.",en:"Single please, I'll come back by bus.",ph:"sínguel plíiz, áil kám bék bái bás"},
-      {pt:"Ida e volta para hoje.",en:"A return for today.",ph:"a ritérn for tudêi"},
-      {pt:"Só ida por enquanto.",en:"Just a single for now.",ph:"djást a sínguel for náu"},
-      {pt:"Qual é mais barato?",en:"Which one is cheaper?",ph:"uítch uán iz tchíiper?"},
-      {pt:"Ida e volta vale para o dia todo?",en:"Is the return valid all day?",ph:"iz dê ritérn vélid ól dêi?"},
-      {pt:"Preciso de dois bilhetes de ida.",en:"I need two singles.",ph:"ái níid tuu sínguelz"},
-      {pt:"Só ida, fico por aqui.",en:"Single only, I'm staying here.",ph:"sínguel óunli, áim stêing hír"},
-    ]},
-    {q:"The next bus is in five minutes.",pt:"O próximo ônibus chegará em cinco minutos.",answers:[
-      {pt:"Obrigado. Ele para em London Bridge?",en:"Thanks. Does it stop at London Bridge?",ph:"thénks. daz it stóp at lándon briídj?"},
-      {pt:"Ok, vou esperar aqui.",en:"Okay, I'll wait here.",ph:"okêi, áil uêit hír"},
-      {pt:"Esse ônibus vai para o centro?",en:"Does this bus go to the centre?",ph:"daz dis bás góu tu dê sénter?"},
-      {pt:"Obrigado pela informação.",en:"Thank you for letting me know.",ph:"thénk yu for léting mi nóu"},
-      {pt:"Qual número é esse ônibus?",en:"What number is this bus?",ph:"uót námber iz dis bás?"},
-      {pt:"Tem ônibus direto para o aeroporto?",en:"Is there a direct bus to the airport?",ph:"iz dér a dirékt bás tu di érport?"},
-      {pt:"Posso pagar com cartão de crédito no ônibus?",en:"Can I pay by credit card on the bus?",ph:"kán ái pêi bái krédit kard on dê bás?"},
-      {pt:"Ok, vou pegar o próximo.",en:"Okay, I'll take the next one.",ph:"okêi, áil têik dê nékst uán"},
-      {pt:"Tem ônibus noturno também?",en:"Is there a night bus as well?",ph:"iz dér a náit bás az uél?"},
-      {pt:"Obrigado, vou aguardar.",en:"Thank you, I'll wait.",ph:"thénk yu, áil uêit"},
-    ]},
-    {q:"Sorry, we're experiencing delays.",pt:"Desculpe, estamos com atrasos.",answers:[
-      {pt:"Quanto tempo de atraso?",en:"How long is the delay?",ph:"háu long iz dê dilêi?"},
-      {pt:"Tudo bem, obrigado por avisar.",en:"That's okay, thank you for letting me know.",ph:"dats okêi, thénk yu for léting mi nóu"},
-      {pt:"Tem alternativa de transporte?",en:"Is there an alternative transport?",ph:"iz dér an oltérnativ trénspórt?"},
-      {pt:"Tem previsão de normalizar?",en:"Is there an estimated time to resume?",ph:"iz dér an éstimêitid táim tu rizíum?"},
-      {pt:"Posso pegar um trem diferente?",en:"Can I take a different train?",ph:"kán ái têik a díferent trêin?"},
-      {pt:"Tem ônibus de substituição?",en:"Is there a replacement bus?",ph:"iz dér a riplêisment bás?"},
-      {pt:"Posso receber reembolso?",en:"Can I get a refund?",ph:"kán ái guét a ríifand?"},
-      {pt:"Preciso avisar minha família.",en:"I need to let my family know.",ph:"ái níid tu lét mái féimili nóu"},
-      {pt:"Isso acontece com frequência?",en:"Does this happen often?",ph:"daz dis hépen ófen?"},
-      {pt:"Ok, vou aguardar então.",en:"Okay, I'll wait then.",ph:"okêi, áil uêit den"},
-    ]},
-    {q:"Can I see your ticket, please?",pt:"Posso ver sua passagem, por favor?",answers:[
-      {pt:"Claro, aqui está.",en:"Of course, here it is.",ph:"ov córs, hír it iz"},
-      {pt:"Está no meu celular.",en:"It's on my phone.",ph:"its on mái fóun"},
-      {pt:"Aqui está meu Oyster card.",en:"Here is my Oyster card.",ph:"hír iz mái óister kard"},
-      {pt:"Deixa eu encontrar no aplicativo.",en:"Let me find it on the app.",ph:"lét mi fáind it on di áp"},
-      {pt:"Comprei online, está aqui.",en:"I bought it online, here it is.",ph:"ái bót it onláin, hír it iz"},
-      {pt:"Um momento, está na minha mochila.",en:"Just a moment, it's in my backpack.",ph:"djást a móument, its in mái békpak"},
-      {pt:"Aqui está o QR code.",en:"Here is the QR code.",ph:"hír iz dê kiú ár kóud"},
-      {pt:"Paguei por aproximação com cartão de crédito.",en:"I paid contactless with my credit card.",ph:"ái pêid kontáktles with mái krédit kard"},
-      {pt:"Aqui está o bilhete impresso.",en:"Here is my printed ticket.",ph:"hír iz mái príntid tíket"},
-      {pt:"Tenho o passe do dia.",en:"I have a day pass.",ph:"ái háv a dêi pás"},
-    ]},
-  ]},
+  practice(){
+    const key = this.state.scene + ':' + this.state.idx;
+    if (this.state.practiced[key]) return;
+    const practiced = Object.assign({}, this.state.practiced, { [key]:true });
+    const xp = this.state.xp + 10;
+    this.setState({ practiced, xp, gained:true });
+    try { localStorage.setItem(this.LS, JSON.stringify({ xp, practiced })); } catch(e){}
+    if (this._g) clearTimeout(this._g);
+    this._g = setTimeout(()=>this.setState({ gained:false }), 820);
+  }
 
-  restaurant:{label:'Restaurante / Café',icon:'☕',color:'#c9a84c',questions:[
-    {q:"Have you booked a table?",pt:"Você reservou uma mesa?",answers:[
-      {pt:"Não, tem mesa disponível para dois?",en:"No, do you have a table for two?",ph:"nóu, du yu háv a têibel for tuu?"},
-      {pt:"Sim, reserva no nome de Silva.",en:"Yes, reservation under Silva.",ph:"iés, rezervêishon ánder silva"},
-      {pt:"Não, somos apenas dois.",en:"No, there's just the two of us.",ph:"nóu, déerz djást dê tuu ov as"},
-      {pt:"Sim, reservei pelo telefone.",en:"Yes, I booked by phone.",ph:"iés, ái bukt bái fóun"},
-      {pt:"Não, é possível sentar agora?",en:"No, is it possible to sit now?",ph:"nóu, iz it pósibol tu sit náu?"},
-      {pt:"Não, quanto tempo de espera?",en:"No, how long is the wait?",ph:"nóu, háu long iz dê uêit?"},
-      {pt:"Sim, reservei para quatro pessoas.",en:"Yes, I booked for four people.",ph:"iés, ái bukt for fór píipol"},
-      {pt:"Posso sentar no bar enquanto espero?",en:"Can I sit at the bar while I wait?",ph:"kán ái sit at dê bar uáil ái uêit?"},
-      {pt:"Tem mesa do lado de fora?",en:"Do you have an outdoor table?",ph:"du yu háv an áutdór têibel?"},
-      {pt:"Não, vim indicado pela minha família.",en:"No, my family recommended this place.",ph:"nóu, mái féimili rékamendid dis plêis"},
-    ]},
-    {q:"What can I get for you?",pt:"O que posso trazer para você?",answers:[
-      {pt:"Um flat white e um croissant, por favor.",en:"A flat white and a croissant, please.",ph:"a fléit uáit and a kruasán, plíiz"},
-      {pt:"Um cappuccino e torrada, por favor.",en:"A cappuccino and toast, please.",ph:"a kapuchíinou and tóust, plíiz"},
-      {pt:"Pode me trazer o cardápio?",en:"Could you bring me the menu?",ph:"kud yu bring mi dê méniuu?"},
-      {pt:"Um chá com leite, por favor.",en:"A tea with milk, please.",ph:"a tíi with milk, plíiz"},
-      {pt:"Vou querer o prato do dia.",en:"I'll have the dish of the day.",ph:"áil háv dê dish ov dê dêi"},
-      {pt:"O que vocês recomendam?",en:"What do you recommend?",ph:"uót du yu rekamend?"},
-      {pt:"Tem opção vegetariana?",en:"Do you have a vegetarian option?",ph:"du yu háv a vedjitérian ópshon?"},
-      {pt:"Um suco de laranja e ovos mexidos.",en:"An orange juice and scrambled eggs.",ph:"an órendj djúus and skrámbold égz"},
-      {pt:"Mais um momento, por favor.",en:"Just a moment, please.",ph:"djást a móument, plíiz"},
-      {pt:"Um copo d'água enquanto decido.",en:"A glass of water while I decide.",ph:"a glás ov uóter uáil ái disáid"},
-    ]},
-    {q:"Is that to eat in or take away?",pt:"É para comer aqui ou para levar?",answers:[
-      {pt:"Para comer aqui.",en:"To eat in, please.",ph:"tu íit in, plíiz"},
-      {pt:"Para levar.",en:"Take away, please.",ph:"têik awêi, plíiz"},
-      {pt:"Para comer aqui, pode ser mesa do lado de fora?",en:"Eat in, can I sit outside?",ph:"íit in, kán ái sit áutsáid?"},
-      {pt:"Para levar, vou comer no parque.",en:"Take away, I'll eat in the park.",ph:"têik awêi, áil íit in dê park"},
-      {pt:"Aqui mesmo, obrigado.",en:"Here, thank you.",ph:"hír, thénk yu"},
-      {pt:"Para levar, tem embalagem?",en:"Take away, do you have packaging?",ph:"têik awêi, du yu háv pékidjiing?"},
-      {pt:"Para comer aqui.",en:"To eat in.",ph:"tu íit in"},
-      {pt:"Para levar por favor, tenho pressa.",en:"Take away please, I'm in a hurry.",ph:"têik awêi plíiz, áim in a hári"},
-      {pt:"Aqui, mas pode me dar um saquinho?",en:"Here, but could I have a bag?",ph:"hír, bat kud ái háv a bég?"},
-      {pt:"Para levar, vou visitar minha família.",en:"Take away, I'm going to visit my family.",ph:"têik awêi, áim góuing tu vízit mái féimili"},
-    ]},
-    {q:"Do you have any dietary requirements?",pt:"Você tem alguma restrição alimentar?",answers:[
-      {pt:"Não tenho restrição nenhuma.",en:"I have no dietary requirements.",ph:"ái háv nóu dáietori rikuáirments"},
-      {pt:"Sou vegetariano.",en:"I'm vegetarian.",ph:"áim vedjitérian"},
-      {pt:"Sou vegano.",en:"I'm vegan.",ph:"áim víigan"},
-      {pt:"Sou intolerante à lactose.",en:"I'm lactose intolerant.",ph:"áim láktous intólerent"},
-      {pt:"Tenho alergia a glúten.",en:"I'm gluten intolerant.",ph:"áim glúten intólerent"},
-      {pt:"Não como carne de porco.",en:"I don't eat pork.",ph:"ái dóunt íit pork"},
-      {pt:"Sou alérgico a amendoim.",en:"I'm allergic to peanuts.",ph:"áim alérdjik tu píinats"},
-      {pt:"Não como frutos do mar.",en:"I don't eat seafood.",ph:"ái dóunt íit síifuud"},
-      {pt:"Tenho alergia a ovos.",en:"I'm allergic to eggs.",ph:"áim alérdjik tu égz"},
-      {pt:"Como halal apenas.",en:"I only eat halal.",ph:"ái óunli íit halál"},
-    ]},
-    {q:"How would you like your steak cooked?",pt:"Como gostaria do seu bife?",answers:[
-      {pt:"Bem passado, por favor.",en:"Well done, please.",ph:"uél dán, plíiz"},
-      {pt:"Ao ponto, por favor.",en:"Medium, please.",ph:"míidium, plíiz"},
-      {pt:"Mal passado, por favor.",en:"Rare, please.",ph:"rér, plíiz"},
-      {pt:"Ao ponto para bem passado.",en:"Medium well, please.",ph:"míidium uél, plíiz"},
-      {pt:"Ao ponto para mal passado.",en:"Medium rare, please.",ph:"míidium rér, plíiz"},
-      {pt:"Bem passado mesmo, sem sangue.",en:"Very well done, no pink at all.",ph:"véri uél dán, nóu pink at ól"},
-      {pt:"Como o chef recomendar.",en:"However the chef recommends.",ph:"hauéver dê tchef rekamendz"},
-      {pt:"Ao ponto, levemente rosado.",en:"Medium, slightly pink inside.",ph:"míidium, sláitli pink insáid"},
-      {pt:"Não como bife.",en:"I don't eat steak.",ph:"ái dóunt íit stêik"},
-      {pt:"Bem passado e com molho à parte.",en:"Well done with sauce on the side.",ph:"uél dán with sós on dê sáid"},
-    ]},
-    {q:"Can I get you anything else?",pt:"Posso trazer mais alguma coisa?",answers:[
-      {pt:"Pode trazer a conta, por favor?",en:"Could we have the bill, please?",ph:"kud wíi háv dê bil, plíiz?"},
-      {pt:"Não, estamos bem. Obrigado.",en:"No, we're fine. Thank you.",ph:"nóu, uíer fáin. thénk yu"},
-      {pt:"Sim, mais uma água por favor.",en:"Yes, another water please.",ph:"iés, anáder uóter plíiz"},
-      {pt:"Pode trazer o cardápio de sobremesa?",en:"Could you bring the dessert menu?",ph:"kud yu bring dê dizért méniuu?"},
-      {pt:"Mais pão, por favor.",en:"More bread, please.",ph:"mór bréd, plíiz"},
-      {pt:"Outro café, por favor.",en:"Another coffee, please.",ph:"anáder kófi, plíiz"},
-      {pt:"Sim, tem mostarda?",en:"Yes, do you have mustard?",ph:"iés, du yu háv másterd?"},
-      {pt:"Pode trocar meu prato? Está frio.",en:"Could you replace my dish? It's cold.",ph:"kud yu riplêis mái dish? its kóuld"},
-      {pt:"Não, está tudo ótimo.",en:"No, everything is great.",ph:"nóu, évrithing iz grêit"},
-      {pt:"Sim, mais guardanapos por favor.",en:"Yes, more napkins please.",ph:"iés, mór népkinz plíiz"},
-    ]},
-    {q:"Would you like still or sparkling water?",pt:"Prefere água com ou sem gás?",answers:[
-      {pt:"Sem gás, por favor.",en:"Still, please.",ph:"stil, plíiz"},
-      {pt:"Com gás, por favor.",en:"Sparkling, please.",ph:"spárkling, plíiz"},
-      {pt:"Sem gás está ótimo.",en:"Still is fine.",ph:"stil iz fáin"},
-      {pt:"Não tenho preferência.",en:"I don't mind.",ph:"ái dóunt máind"},
-      {pt:"Com gás, por favor. Bem gelada.",en:"Sparkling please, nice and cold.",ph:"spárkling plíiz, náis and kóuld"},
-      {pt:"Tem água da torneira?",en:"Do you have tap water?",ph:"du yu háv táp uóter?"},
-      {pt:"Sem gás para mim e com gás para ela.",en:"Still for me and sparkling for her.",ph:"stil for mi and spárkling for hér"},
-      {pt:"Pode ser qualquer uma.",en:"Either is fine.",ph:"íider iz fáin"},
-      {pt:"Sem gás, uma garrafa grande.",en:"Still, a large bottle.",ph:"stil, a lardj bótol"},
-      {pt:"Qual vocês têm?",en:"What do you have?",ph:"uót du yu háv?"},
-    ]},
-    {q:"Is everything okay with your food?",pt:"Está tudo bem com sua comida?",answers:[
-      {pt:"Sim, está delicioso. Obrigado.",en:"Yes, it's delicious. Thank you.",ph:"iés, its dilichios. thénk yu"},
-      {pt:"Na verdade, meu prato está frio.",en:"Actually, my dish is cold.",ph:"áktuali, mái dish iz kóuld"},
-      {pt:"Sim, tudo ótimo.",en:"Yes, everything is great.",ph:"iés, évrithing iz grêit"},
-      {pt:"Não pedi esse prato.",en:"This isn't what I ordered.",ph:"dis íznt uót ái órderd"},
-      {pt:"Está muito bom, obrigado.",en:"It's very good, thank you.",ph:"its véri guud, thénk yu"},
-      {pt:"A carne está um pouco crua.",en:"The meat is a bit undercooked.",ph:"dê míit iz a bit ánderkokt"},
-      {pt:"Está faltando um item no meu pedido.",en:"Something is missing from my order.",ph:"sámthing iz míising from mái órder"},
-      {pt:"Sim, mas faltou o molho.",en:"Yes, but the sauce is missing.",ph:"iés, bat dê sós iz míising"},
-      {pt:"Está ótimo, melhor do que esperava.",en:"It's great, better than expected.",ph:"its grêit, béter dan ekspéktid"},
-      {pt:"Pode me trazer mais tempero?",en:"Could you bring more seasoning?",ph:"kud yu bring mór síizoning?"},
-    ]},
-    {q:"Do you want to split the bill?",pt:"Querem dividir a conta?",answers:[
-      {pt:"Sim, dividir igualmente por favor.",en:"Yes, split equally please.",ph:"iés, splít ííkueli plíiz"},
-      {pt:"Não, eu pago tudo.",en:"No, I'll pay for everything.",ph:"nóu, áil pêi for évrithing"},
-      {pt:"Sim, pode dividir em dois.",en:"Yes, split it in two.",ph:"iés, splít it in tuu"},
-      {pt:"Cada um paga o que pediu.",en:"We'll each pay for what we ordered.",ph:"uíil íitch pêi for uót wíi órderd"},
-      {pt:"Não, já combinamos quem paga.",en:"No, we've already decided who pays.",ph:"nóu, uíiv ólredi disáidid huu pêiz"},
-      {pt:"Pode separar as contas?",en:"Can you give us separate bills?",ph:"kán yu guív as séparet bilz?"},
-      {pt:"Prefiro pagar junto mesmo.",en:"I'd rather pay together.",ph:"áid ráder pêi tugéder"},
-      {pt:"Sim, três partes iguais.",en:"Yes, three equal parts.",ph:"iés, thrí ííkuol parts"},
-      {pt:"Vou pagar em dinheiro vivo.",en:"I'll pay in cash.",ph:"áil pêi in késh"},
-      {pt:"Sim, menos o vinho que foi só meu.",en:"Yes, minus the wine which was just mine.",ph:"iés, máinos dê uáin uítch uóz djást máin"},
-    ]},
-    {q:"We have a service charge of twelve and a half percent.",pt:"Temos uma taxa de serviço de 12,5%.",answers:[
-      {pt:"Tudo bem, pode incluir.",en:"That's fine, please include it.",ph:"dats fáin, plíiz inklúud it"},
-      {pt:"Posso pagar no cartão de crédito?",en:"Can I pay by credit card?",ph:"kán ái pêi bái krédit kard?"},
-      {pt:"Pode remover a taxa, por favor?",en:"Can you remove the service charge please?",ph:"kán yu rimúuv dê sérvos tchardj plíiz?"},
-      {pt:"Já incluiu na conta?",en:"Is it already on the bill?",ph:"iz it ólredi on dê bil?"},
-      {pt:"Prefiro dar gorjeta em dinheiro.",en:"I'd prefer to tip in cash.",ph:"áid prifér tu tip in késh"},
-      {pt:"Tudo bem, o serviço foi ótimo.",en:"That's fine, the service was great.",ph:"dats fáin, dê sérvos uóz grêit"},
-      {pt:"É obrigatório ou opcional?",en:"Is it mandatory or optional?",ph:"iz it méndotori or ópshonol?"},
-      {pt:"Tudo bem, pode manter.",en:"That's okay, keep it.",ph:"dats okêi, kíip it"},
-      {pt:"Qual o valor total com a taxa?",en:"What's the total including the charge?",ph:"uóts dê tóutol inklúuding dê tchardj?"},
-      {pt:"Ok, vou pagar tudo em dinheiro.",en:"Okay, I'll pay the full amount in cash.",ph:"okêi, áil pêi dê ful amáunt in késh"},
-    ]},
-  ]},
-};
+  selectScene(k){ this.stopSpeech(); this.setState({ scene:k, idx:0, sel:'', revealed:false, done:false, speaking:null }); }
+  nextScene(){ const keys = Object.keys(this.DATA); const i = keys.indexOf(this.state.scene); this.selectScene(keys[(i+1) % keys.length]); }
+  onSelect(e){ this.setState({ sel:e.target.value, revealed:false }); }
+  confirm(){ const a = this.curAns(); if (!a) return; this.setState({ revealed:true }); this.practice(); setTimeout(()=>this.speak(a.en,'a'), 280); }
+  jumpTo(i){ this.stopSpeech(); this.setState({ idx:i, sel:'', revealed:false, speaking:null }); }
+  nav(dir){
+    this.stopSpeech();
+    const total = this.cur().questions.length;
+    const next = this.state.idx + dir;
+    if (next >= total){ this.setState({ done:true, speaking:null }); return; }
+    if (next < 0) return;
+    this.setState({ idx:next, sel:'', revealed:false, speaking:null });
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+  restart(){ this.setState({ idx:0, sel:'', revealed:false, done:false }); }
 
-const keys = Object.keys(SCENARIOS);
-let scene = keys[0], idx = 0, currentAnswer = null;
+  renderVals(){
+    const base = { ready:this.state.ready, xp:this.state.xp, gained:this.state.gained };
+    base.xpPillStyle = `display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:rgba(255,201,74,0.13);border:1px solid rgba(255,201,74,0.32);color:#FFD98A;font-size:14px;font-weight:700;${this.state.gained?'animation:lr-bump .5s ease;':''}`;
+    if (!this.state.ready) return base;
 
-function init(){
-  const el = document.getElementById('tabs');
-  el.innerHTML = '';
-  keys.forEach(k => {
-    const b = document.createElement('button');
-    b.className = 'tab' + (k===scene ? ' active' : '');
-    b.textContent = SCENARIOS[k].icon + ' ' + SCENARIOS[k].label;
-    b.onclick = () => switchScene(k);
-    el.appendChild(b);
-  });
-  render();
+    const { scene, idx, sel, revealed, done, speaking, practiced } = this.state;
+    const data = this.DATA;
+    const accent = this.ACCENTS[scene] || '#5B9BFF';
+    const accentLt = this.lighten(accent, 0.28);
+    const grad = `linear-gradient(135deg,${this.lighten(accent,0.16)},${accent})`;
+    const s = data[scene];
+    const total = s.questions.length;
+    const q = s.questions[idx];
+    const a = sel === '' ? null : q.answers[parseInt(sel)];
+
+    const tabBase = 'flex:none;display:inline-flex;align-items:center;gap:7px;border-radius:13px;padding:9px 14px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:all .22s;';
+    const scenes = Object.keys(data).map(k => {
+      const c = this.ACCENTS[k] || '#5B9BFF';
+      const active = k === scene;
+      return {
+        key:k,
+        shortLabel: data[k].label.split('/')[0].trim(),
+        icon: this.icon(this.SCENE_ICON[k], 17, 1.9),
+        onClick: () => this.selectScene(k),
+        style: tabBase + (active
+          ? `background:${this.lighten(c,0.05)};color:#0b1020;border:1px solid ${this.hexA(c,0.6)};box-shadow:0 6px 18px ${this.hexA(c,0.45)};`
+          : 'background:rgba(255,255,255,0.06);color:#aebbd8;border:1px solid rgba(255,255,255,0.09);')
+      };
+    });
+
+    const segs = s.questions.map((_, i) => {
+      const done_i = !!practiced[scene + ':' + i];
+      const isCur = i === idx;
+      let st = 'flex:1;height:6px;border-radius:99px;border:none;padding:0;cursor:pointer;transition:all .3s;';
+      if (isCur) st += `background:${accent};box-shadow:0 0 12px ${this.hexA(accent,0.65)};`;
+      else if (done_i) st += `background:${this.hexA(accent,0.8)};`;
+      else st += 'background:rgba(255,255,255,0.12);';
+      return { style: st, onClick: () => this.jumpTo(i) };
+    });
+
+    const pulse = 'animation:lr-pulse .8s ease-in-out infinite alternate;';
+    const score = Object.keys(practiced).filter(k => k.indexOf(scene + ':') === 0).length;
+
+    return Object.assign(base, {
+      scenes,
+      segs,
+      progressLabel: `${idx+1} / ${total}`,
+      catLabel: s.label,
+      catIcon: this.icon(this.SCENE_ICON[scene], 15, 2),
+      catPillStyle: `display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:${this.hexA(accent,0.14)};border:1px solid ${this.hexA(accent,0.32)};color:${accentLt};font-size:13px;font-weight:700;letter-spacing:-0.01em;`,
+      qEn: q.q,
+      qPt: q.pt,
+      onSpeakQ: () => this.speak(q.q, 'q'),
+      speakQStyle: `width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.13);color:${accentLt};cursor:pointer;flex:none;transition:all .2s;${speaking==='q'?pulse:''}`,
+      options: q.answers.map((an,i) => ({ value:String(i), label:an.pt })),
+      selectedValue: sel,
+      onSelect: (e) => this.onSelect(e),
+      showConfirm: !revealed,
+      confirmDisabled: sel === '',
+      onConfirm: () => this.confirm(),
+      confirmStyle: `width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:${sel===''?'rgba(255,255,255,0.08)':grad};color:${sel===''?'#6b7ba0':'#0b1020'};border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;font-family:inherit;letter-spacing:-0.01em;cursor:${sel===''?'not-allowed':'pointer'};box-shadow:${sel===''?'none':`0 10px 26px ${this.hexA(accent,0.34)}`};transition:all .22s;`,
+      revealed,
+      rPt: a ? a.pt : '',
+      rEn: a ? a.en : '',
+      rPhonetic: a ? a.ph : '',
+      revealEnLabelStyle: `font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${accentLt};`,
+      revealBoxStyle: `background:linear-gradient(160deg,${this.hexA(accent,0.17)},rgba(255,255,255,0.04));border:1px solid ${this.hexA(accent,0.32)};border-radius:18px;padding:18px;margin-top:6px;box-shadow:0 18px 44px -26px ${this.hexA(accent,0.7)},inset 0 1px 0 rgba(255,255,255,0.12);animation:lr-rise .38s cubic-bezier(.22,1,.36,1);`,
+      onSpeakA: () => { const an = this.curAns(); if (an) this.speak(an.en, 'a'); },
+      speakAStyle: `display:inline-flex;align-items:center;gap:8px;background:${accent};color:#0b1020;border:none;border-radius:12px;padding:11px 18px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 8px 20px ${this.hexA(accent,0.4)};${speaking==='a'?pulse:''}`,
+      showCard: !done,
+      done,
+      firstQ: idx === 0,
+      onPrev: () => this.nav(-1),
+      onNext: () => this.nav(1),
+      nextLabel: idx === total-1 ? 'Finalizar' : 'Próxima',
+      prevStyle: `width:48px;height:48px;flex:none;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:${idx===0?'#3c486a':'#cdd8f0'};cursor:${idx===0?'not-allowed':'pointer'};transition:all .2s;`,
+      nextStyle: `flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:14px;background:${grad};color:#0b1020;border:none;font-size:16px;font-weight:700;font-family:inherit;letter-spacing:-0.01em;cursor:pointer;box-shadow:0 8px 22px ${this.hexA(accent,0.35)};`,
+      doneScene: s.label,
+      scoreLabel: `${score}/${total} frases`,
+      onRestart: () => this.restart(),
+      onNextScene: () => this.nextScene(),
+      restartStyle: `flex:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);color:#dbe4f7;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s;`,
+      nextSceneStyle: `flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:${grad};color:#0b1020;border:none;font-size:15px;font-weight:700;font-family:inherit;letter-spacing:-0.01em;cursor:pointer;box-shadow:0 9px 24px ${this.hexA(accent,0.35)};`,
+      doneCircleStyle: `width:92px;height:92px;border-radius:50%;background:${grad};color:#0b1020;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 46px ${this.hexA(accent,0.45)},inset 0 2px 0 rgba(255,255,255,0.35);animation:lr-pop .5s cubic-bezier(.34,1.56,.64,1);`
+    });
+  }
 }
-
-function switchScene(k){
-  scene = k; idx = 0;
-  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', keys[i]===k));
-  document.getElementById('doneScreen').classList.remove('visible');
-  document.getElementById('cardWrap').style.display = '';
-  document.getElementById('navRow').style.display = '';
-  render();
-}
-
-function render(){
-  const s = SCENARIOS[scene], total = s.questions.length, q = s.questions[idx];
-  currentAnswer = null;
-  document.getElementById('pbarFill').style.width = (idx/total*100) + '%';
-  document.getElementById('plabel').textContent = `${idx+1} / ${total}`;
-  document.getElementById('tagDot').style.background = s.color;
-  const tt = document.getElementById('tagText');
-  tt.textContent = s.icon + ' ' + s.label; tt.style.color = s.color;
-  document.getElementById('qEn').textContent = q.q;
-  document.getElementById('qPt').textContent = q.pt;
-  const sel = document.getElementById('answerSelect');
-  sel.innerHTML = '<option value="">— Escolha como você responderia —</option>';
-  q.answers.forEach((a, i) => {
-    const opt = document.createElement('option');
-    opt.value = i;
-    opt.textContent = a.pt;
-    sel.appendChild(opt);
-  });
-  document.getElementById('resultBox').classList.remove('visible');
-  document.getElementById('btnConfirm').disabled = true;
-  document.getElementById('rEn').textContent = '';
-  document.getElementById('rPhonetic').textContent = '';
-  document.getElementById('btnPrev').disabled = idx === 0;
-  document.getElementById('btnNext').textContent = idx === total-1 ? 'Finalizar ✓' : 'Próxima →';
-}
-
-function onSelectChange(){
-  const sel = document.getElementById('answerSelect');
-  document.getElementById('btnConfirm').disabled = sel.value === '';
-  document.getElementById('resultBox').classList.remove('visible');
-  currentAnswer = null;
-}
-
-function confirmAnswer(){
-  const sel = document.getElementById('answerSelect');
-  const q = SCENARIOS[scene].questions[idx];
-  const a = q.answers[parseInt(sel.value)];
-  currentAnswer = a;
-  document.getElementById('rEn').textContent = a.en;
-  document.getElementById('rPhonetic').textContent = '🔤 ' + a.ph;
-  document.getElementById('resultBox').classList.add('visible');
-  setTimeout(() => speak('a'), 300);
-}
-
-function nav(dir){
-  stopSpeech();
-  const total = SCENARIOS[scene].questions.length;
-  const next = idx + dir;
-  if(next >= total){ showDone(); return; }
-  if(next < 0) return;
-  idx = next; render();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function showDone(){
-  document.getElementById('cardWrap').style.display = 'none';
-  document.getElementById('navRow').style.display = 'none';
-  document.getElementById('doneScreen').classList.add('visible');
-  document.getElementById('pbarFill').style.width = '100%';
-  document.getElementById('plabel').textContent = '✓ Completo';
-}
-
-function restart(){
-  idx = 0;
-  document.getElementById('doneScreen').classList.remove('visible');
-  document.getElementById('cardWrap').style.display = '';
-  document.getElementById('navRow').style.display = '';
-  render();
-}
-
-function stopSpeech(){
-  if('speechSynthesis' in window) window.speechSynthesis.cancel();
-  document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
-}
-
-function speak(type){
-  if(!('speechSynthesis' in window)){ alert('Use o Chrome para ouvir o áudio.'); return; }
-  let text = '', btnId = '';
-  if(type==='q'){ text = SCENARIOS[scene].questions[idx].q; btnId = 'btnListenQ'; }
-  if(type==='a'){ text = currentAnswer?.en; btnId = 'btnListenA'; }
-  if(!text) return;
-  stopSpeech();
-  const btn = document.getElementById(btnId);
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'en-GB'; u.rate = 0.82; u.pitch = 1;
-  const voices = window.speechSynthesis.getVoices();
-  const brit = voices.find(v =>
-    v.lang === 'en-GB' ||
-    ['Daniel','Kate','Oliver','Serena'].some(n => v.name.includes(n))
-  );
-  if(brit) u.voice = brit;
-  btn.classList.add('speaking');
-  u.onend = u.onerror = () => btn.classList.remove('speaking');
-  window.speechSynthesis.speak(u);
-}
-
-if('speechSynthesis' in window){
-  window.speechSynthesis.getVoices();
-  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-}
-init();
 </script>
 </body>
 </html>
