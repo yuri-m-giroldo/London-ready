@@ -1,212 +1,27 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>London Ready</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&family=Space+Grotesk:wght@500;600;700&display=swap');
-:root{
-  --bg:#0b0f1a;
-  --navy:#0d1f3c;
-  --navy2:#122548;
-  --surface:#111827;
-  --surface2:#1a2540;
-  --border:#1e2d4a;
-  --red:#c8102e;
-  --red2:#a50d25;
-  --gold:#c9a84c;
-  --gold2:#e8c96a;
-  --white:#f0f4ff;
-  --muted:#6b7fa3;
-  --text:#dde4f5;
-  --r:14px;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-html,body{width:100%;max-width:100%;background:var(--bg);color:var(--text);
-  font-family:'Inter',sans-serif;font-size:16px;overflow-x:hidden;-webkit-text-size-adjust:100%;}
-
-/* ── HEADER ── */
-.header{
-  background:var(--navy);
-  border-bottom:2px solid var(--red);
-  padding:12px 16px;
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:10;
-}
-.logo-wrap{display:flex;align-items:center;gap:8px;}
-.logo-flag{font-size:1.3rem;}
-.logo{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;
-  color:var(--white);letter-spacing:0.3px;}
-.logo span{color:var(--gold);}
-.header-badge{font-size:0.65rem;font-weight:600;text-transform:uppercase;letter-spacing:1px;
-  color:var(--gold);border:1px solid var(--gold);padding:3px 8px;border-radius:4px;opacity:.8;}
-
-/* ── TABS ── */
-.tabs-wrap{overflow-x:auto;scrollbar-width:none;
-  background:var(--navy);border-bottom:1px solid var(--border);padding:10px 14px;}
-.tabs-wrap::-webkit-scrollbar{display:none;}
-.tabs{display:flex;gap:6px;width:max-content;}
-.tab{padding:6px 13px;border-radius:999px;border:1.5px solid var(--border);background:transparent;
-  color:var(--muted);font-size:0.75rem;font-weight:500;cursor:pointer;white-space:nowrap;
-  font-family:'Inter',sans-serif;transition:all .18s;-webkit-tap-highlight-color:transparent;}
-.tab.active{border-color:var(--red);color:var(--white);background:var(--red);}
-.tab:hover:not(.active){border-color:var(--gold);color:var(--gold);}
-
-/* ── PROGRESS ── */
-.prog-wrap{display:flex;align-items:center;gap:10px;padding:10px 16px 0;
-  background:var(--navy2);border-bottom:1px solid var(--border);}
-.pbar{flex:1;height:3px;background:var(--border);border-radius:99px;overflow:hidden;}
-.pbar-fill{height:100%;background:linear-gradient(90deg,var(--red),var(--gold));
-  border-radius:99px;transition:width .4s ease;}
-.plabel{font-size:0.7rem;color:var(--muted);white-space:nowrap;padding-bottom:10px;}
-
-/* ── CARD ── */
-.card-wrap{padding:14px 14px 6px;}
-.card{background:var(--surface);border:1.5px solid var(--border);border-radius:var(--r);overflow:hidden;}
-
-.card-tag{display:flex;align-items:center;gap:6px;padding:10px 14px 0;
-  font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);}
-.dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;}
-
-.q-block{padding:10px 14px 14px;}
-.block-label{font-size:0.65rem;color:var(--muted);font-weight:600;text-transform:uppercase;
-  letter-spacing:.7px;margin-bottom:5px;}
-.q-en{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:600;
-  line-height:1.3;color:var(--white);margin-bottom:4px;}
-.q-pt{font-size:0.82rem;color:var(--muted);line-height:1.4;margin-bottom:12px;font-style:italic;}
-
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:5px;
-  padding:9px 16px;border-radius:999px;border:1.5px solid var(--border);
-  background:transparent;color:var(--text);font-size:0.79rem;font-weight:500;
-  cursor:pointer;font-family:'Inter',sans-serif;transition:all .18s;
-  -webkit-tap-highlight-color:transparent;white-space:nowrap;}
-.btn:active{opacity:.7;}
-.btn.audio-q{border-color:var(--border);color:var(--muted);}
-.btn.audio-q:hover,.btn.audio-q:active{border-color:var(--gold);color:var(--gold);}
-
-/* ── SELECT ── */
-.select-block{border-top:1px solid var(--border);padding:14px;}
-
-.select-wrap{position:relative;margin-bottom:10px;}
-.select-wrap select{
-  width:100%;background:var(--navy);border:1.5px solid var(--border);border-radius:10px;
-  padding:11px 36px 11px 12px;color:var(--text);font-size:0.86rem;font-family:'Inter',sans-serif;
-  appearance:none;-webkit-appearance:none;outline:none;cursor:pointer;line-height:1.4;
-  transition:border-color .18s;}
-.select-wrap select:focus{border-color:var(--gold);}
-.select-wrap::after{content:'▾';position:absolute;right:12px;top:50%;transform:translateY(-50%);
-  color:var(--muted);pointer-events:none;font-size:0.85rem;}
-.select-wrap option{background:#0d1f3c;color:var(--text);}
-
-.btn.confirm{width:100%;background:var(--red);border:none;color:#fff;
-  font-weight:600;margin-bottom:12px;font-size:0.85rem;padding:10px 16px;}
-.btn.confirm:hover{background:var(--red2);}
-.btn.confirm:disabled{opacity:.35;cursor:not-allowed;}
-
-/* ── RESULT ── */
-.result-box{background:var(--surface2);border-radius:10px;padding:12px;
-  border:1px solid var(--border);display:none;animation:fadeUp .25s ease;}
-.result-box.visible{display:block;}
-
-.r-label{font-size:0.65rem;color:var(--muted);font-weight:600;text-transform:uppercase;
-  letter-spacing:.7px;margin-bottom:6px;}
-.r-en{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:600;
-  color:var(--gold2);line-height:1.4;margin-bottom:4px;}
-.r-phonetic{font-size:0.74rem;color:var(--muted);font-style:italic;margin-bottom:10px;
-  padding:5px 8px;background:rgba(201,168,76,.07);border-radius:6px;
-  border-left:2px solid var(--gold);}
-.btn.audio-a{border-color:var(--gold);color:var(--gold);
-  background:rgba(201,168,76,.08);font-size:0.79rem;}
-.btn.audio-a:hover{background:rgba(201,168,76,.16);}
-
-/* ── NAV ── */
-.nav-row{display:flex;gap:8px;padding:8px 14px 18px;}
-.btn.prev{flex:0 0 auto;border-color:var(--border);color:var(--muted);}
-.btn.prev:hover{border-color:var(--gold);color:var(--gold);}
-.btn.next{flex:1;background:var(--navy2);border-color:var(--border);}
-.btn.next:hover{border-color:var(--gold);color:var(--gold);}
-
-/* ── DONE ── */
-.done-screen{display:none;flex-direction:column;align-items:center;text-align:center;
-  padding:50px 24px 40px;}
-.done-screen.visible{display:flex;}
-.done-emoji{font-size:2.8rem;margin-bottom:14px;}
-.done-crown{font-size:1.8rem;margin-bottom:4px;}
-.done-title{font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;
-  color:var(--white);margin-bottom:8px;}
-.done-sub{color:var(--muted);font-size:0.84rem;line-height:1.6;margin-bottom:22px;}
-.btn.restart{background:var(--red);border:none;color:#fff;font-weight:600;padding:12px 28px;}
-
-@keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.speaking{animation:pls .7s ease-in-out infinite alternate;}
-@keyframes pls{from{opacity:1}to{opacity:.35}}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
-
-<div class="header">
-  <div class="logo-wrap">
-    <div class="logo-flag">🇬🇧</div>
-    <div class="logo">London<span>Ready</span></div>
-  </div>
-  <div class="header-badge">English Trainer</div>
-</div>
-
-<div class="tabs-wrap"><div class="tabs" id="tabs"></div></div>
-
-<div class="prog-wrap">
-  <div class="pbar"><div class="pbar-fill" id="pbarFill" style="width:0%"></div></div>
-  <div class="plabel" id="plabel">1 / 10</div>
-</div>
-
-<div class="card-wrap" id="cardWrap">
-  <div class="card">
-    <div class="card-tag">
-      <span class="dot" id="tagDot"></span>
-      <span id="tagText"></span>
-    </div>
-    <div class="q-block">
-      <div class="block-label">Pergunta</div>
-      <div class="q-en" id="qEn"></div>
-      <div class="q-pt" id="qPt"></div>
-      <button class="btn audio-q" id="btnListenQ" onclick="speak('q')">🔊 Ouvir pergunta</button>
-    </div>
-    <div class="select-block">
-      <div class="block-label" style="margin-bottom:8px;">Como você responderia?</div>
-      <div class="select-wrap">
-        <select id="answerSelect" onchange="onSelectChange()">
-          <option value="">— Escolha sua resposta em português —</option>
-        </select>
-      </div>
-      <button class="btn confirm" id="btnConfirm" onclick="confirmAnswer()" disabled>
-        Ver e ouvir em inglês →
-      </button>
-      <div class="result-box" id="resultBox">
-        <div class="r-label">Sua resposta em inglês</div>
-        <div class="r-en" id="rEn"></div>
-        <div class="r-phonetic" id="rPhonetic"></div>
-        <button class="btn audio-a" id="btnListenA" onclick="speak('a')">🔊 Ouvir em inglês</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="nav-row" id="navRow">
-  <button class="btn prev" id="btnPrev" onclick="nav(-1)" disabled>← Anterior</button>
-  <button class="btn next" id="btnNext" onclick="nav(1)">Próxima →</button>
-</div>
-
-<div class="done-screen" id="doneScreen">
-  <div class="done-crown">👑</div>
-  <div class="done-emoji">🎉</div>
-  <div class="done-title">Well done!</div>
-  <div class="done-sub">Você praticou todas as perguntas deste bloco.<br>Repita ou escolha outro cenário acima.</div>
-  <button class="btn restart" onclick="restart()">↩ Repetir este bloco</button>
-</div>
-
+<x-dc>
+<helmet>
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+body{margin:0;background:#06080d;}
+select:focus{outline:none;}
+[data-lr-scroll]::-webkit-scrollbar{display:none;}
+@keyframes lr-rise{from{transform:translateY(12px);}to{transform:none;}}
+@keyframes lr-fade{from{transform:translateY(6px);}to{transform:none;}}
+@keyframes lr-pulse{from{opacity:1;}to{opacity:.4;}}
+@keyframes lr-pop{0%{transform:scale(.7);}55%{transform:scale(1.08);}100%{transform:scale(1);}}
+@keyframes lr-bump{0%{transform:scale(1);}40%{transform:scale(1.2);}100%{transform:scale(1);}}
+@keyframes lr-float{0%{opacity:0;transform:translateY(2px);}25%{opacity:1;}100%{opacity:0;transform:translateY(-26px);}}
+</style>
 <script>
-const SCENARIOS = {
+window.LONDON_SCENARIOS = {
   airport:{label:'Aeroporto / Imigração',icon:'✈️',color:'#c8102e',questions:[
     {q:"What is the purpose of your visit?",pt:"Qual é o motivo da sua visita?",answers:[
       {pt:"Vou visitar meus filhos que moram em Londres.",en:"I'm visiting my children who live in London.",ph:"áim víziting mái tchíldren huu liv in lándon"},
@@ -822,133 +637,358 @@ const SCENARIOS = {
     ]},
   ]},
 };
+</script>
+</helmet>
 
-const keys = Object.keys(SCENARIOS);
-let scene = keys[0], idx = 0, currentAnswer = null;
+<div style="min-height:100vh;background:#06080d;display:flex;justify-content:center;font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','Segoe UI',Helvetica,Arial,sans-serif;color:#eef2fb;-webkit-font-smoothing:antialiased;">
+  <div style="position:relative;width:100%;max-width:468px;min-height:100vh;display:flex;flex-direction:column;background:linear-gradient(180deg,#0b1020,#0a0d18 55%,#0c1426);box-shadow:0 0 0 1px rgba(255,255,255,0.05),0 40px 100px -30px rgba(0,0,0,0.8);">
 
-function init(){
-  const el = document.getElementById('tabs');
-  el.innerHTML = '';
-  keys.forEach(k => {
-    const b = document.createElement('button');
-    b.className = 'tab' + (k===scene ? ' active' : '');
-    b.textContent = SCENARIOS[k].icon + ' ' + SCENARIOS[k].label;
-    b.onclick = () => switchScene(k);
-    el.appendChild(b);
-  });
-  render();
+    <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;">
+      <div style="position:absolute;top:-12%;left:-22%;width:85%;height:42%;background:radial-gradient(circle,rgba(200,16,46,0.55),transparent 70%);filter:blur(46px);"></div>
+      <div style="position:absolute;top:24%;right:-28%;width:85%;height:46%;background:radial-gradient(circle,rgba(24,90,200,0.5),transparent 70%);filter:blur(54px);"></div>
+      <div style="position:absolute;bottom:-12%;left:-12%;width:95%;height:40%;background:radial-gradient(circle,rgba(232,184,75,0.26),transparent 70%);filter:blur(60px);"></div>
+    </div>
+
+    <div style="position:relative;z-index:1;display:flex;flex-direction:column;flex:1;">
+
+      <header style="position:sticky;top:0;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:13px 18px;background:rgba(11,16,32,0.55);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);border-bottom:1px solid rgba(255,255,255,0.08);">
+        <div style="display:flex;align-items:center;gap:11px;">
+          <div style="width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,#0a2a6b,#c8102e);display:flex;align-items:center;justify-content:center;color:#fff;font-size:17px;font-weight:800;letter-spacing:-0.03em;box-shadow:0 4px 14px rgba(200,16,46,0.4),inset 0 1px 0 rgba(255,255,255,0.35);">L</div>
+          <div style="font-size:18px;font-weight:700;letter-spacing:-0.025em;">London<span style="color:#FFC94A;">Ready</span></div>
+        </div>
+        <div style="position:relative;">
+          <div style="{{ xpPillStyle }}">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="display:block;"><path d="M13 2 3 14h7l-1 8 10-12h-7z"></path></svg>
+            <span style="font-variant-numeric:tabular-nums;">{{ xp }}</span>
+            <span style="opacity:.6;font-size:11px;">XP</span>
+          </div>
+          <sc-if value="{{ gained }}" hint-placeholder-val="{{ false }}">
+            <div style="position:absolute;top:-4px;right:8px;font-size:13px;font-weight:800;color:#FFD98A;animation:lr-float .82s ease forwards;pointer-events:none;">+10</div>
+          </sc-if>
+        </div>
+      </header>
+
+      <sc-if value="{{ ready }}" hint-placeholder-val="{{ true }}">
+
+        <div data-lr-scroll style="overflow-x:auto;scrollbar-width:none;display:flex;gap:8px;padding:13px 16px 4px;">
+          <sc-for list="{{ scenes }}" as="s" hint-placeholder-count="5">
+            <button onClick="{{ s.onClick }}" style="{{ s.style }}"><span style="display:flex;">{{ s.icon }}</span>{{ s.shortLabel }}</button>
+          </sc-for>
+        </div>
+
+        <div style="padding:12px 18px 4px;">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;">
+            <div style="{{ catPillStyle }}"><span style="display:flex;">{{ catIcon }}</span>{{ catLabel }}</div>
+            <div style="font-size:12px;color:#7c8cb3;font-weight:600;font-variant-numeric:tabular-nums;letter-spacing:0.02em;">{{ progressLabel }}</div>
+          </div>
+          <div style="display:flex;gap:5px;">
+            <sc-for list="{{ segs }}" as="g" hint-placeholder-count="10">
+              <button onClick="{{ g.onClick }}" style="{{ g.style }}"></button>
+            </sc-for>
+          </div>
+        </div>
+
+        <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
+          <main style="flex:1;padding:14px 18px 18px;">
+
+            <div style="background:rgba(255,255,255,0.05);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);border:1px solid rgba(255,255,255,0.10);border-radius:20px;padding:18px;box-shadow:inset 0 1px 0 rgba(255,255,255,0.13),0 22px 46px -28px rgba(0,0,0,0.8);">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;">
+                <div style="display:flex;align-items:center;gap:8px;">
+                  <span style="display:inline-block;width:23px;height:15px;border-radius:3px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,0.18);"><svg viewBox="0 0 60 40" width="23" height="15" preserveAspectRatio="none" style="display:block;"><rect width="60" height="40" fill="#012169"></rect><path d="M0,0 60,40 M60,0 0,40" stroke="#fff" stroke-width="8"></path><path d="M0,0 60,40" stroke="#C8102E" stroke-width="4"></path><path d="M60,0 0,40" stroke="#C8102E" stroke-width="4"></path><rect x="25" width="10" height="40" fill="#fff"></rect><rect y="15" width="60" height="10" fill="#fff"></rect><rect x="26.5" width="7" height="40" fill="#C8102E"></rect><rect y="16.5" width="60" height="7" fill="#C8102E"></rect></svg></span>
+                  <span style="font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#8fa3cc;">inglês</span>
+                </div>
+                <button onClick="{{ onSpeakQ }}" style="{{ speakQStyle }}">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M11 5 6 9H2v6h4l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5.5a9 9 0 0 1 0 13"></path></svg>
+                </button>
+              </div>
+              <h1 style="font-size:25px;line-height:1.2;font-weight:700;letter-spacing:-0.02em;color:#f3f6fd;margin:0;text-wrap:pretty;">{{ qEn }}</h1>
+              <div style="height:1px;background:rgba(255,255,255,0.09);margin:14px 0;"></div>
+              <div style="display:flex;align-items:center;gap:9px;">
+                <span style="display:inline-block;width:23px;height:15px;border-radius:3px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,0.18);"><svg viewBox="0 0 60 40" width="23" height="15" preserveAspectRatio="none" style="display:block;"><rect width="60" height="40" fill="#009B3A"></rect><polygon points="30,4 55,20 30,36 5,20" fill="#FEDF00"></polygon><circle cx="30" cy="20" r="8" fill="#002776"></circle></svg></span>
+                <p style="font-size:15px;line-height:1.42;color:#9fb0d4;margin:0;">{{ qPt }}</p>
+              </div>
+            </div>
+
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.09em;text-transform:uppercase;color:#7c8cb3;margin:18px 0 10px;">Como você responderia?</div>
+
+            <div style="position:relative;margin-bottom:12px;">
+              <select value="{{ selectedValue }}" onChange="{{ onSelect }}" style="appearance:none;-webkit-appearance:none;width:100%;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:15px 44px 15px 16px;font-size:15px;color:#eef2fb;font-family:inherit;line-height:1.35;cursor:pointer;">
+                <option value="" style="background:#121a30;color:#9fb0d4;">Escolha sua resposta…</option>
+                <sc-for list="{{ options }}" as="o" hint-placeholder-count="6">
+                  <option value="{{ o.value }}" style="background:#121a30;color:#eef2fb;">{{ o.label }}</option>
+                </sc-for>
+              </select>
+              <div style="position:absolute;right:18px;top:50%;transform:translateY(-50%);pointer-events:none;color:#8fa3cc;font-size:13px;">▾</div>
+            </div>
+
+            <sc-if value="{{ showConfirm }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ onConfirm }}" disabled="{{ confirmDisabled }}" style="{{ confirmStyle }}">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path><path d="m6.3 6.3 2.4 2.4M15.3 15.3l2.4 2.4M17.7 6.3l-2.4 2.4M8.7 15.3l-2.4 2.4"></path></svg>
+                Ver resposta em inglês
+              </button>
+            </sc-if>
+
+            <sc-if value="{{ revealed }}" hint-placeholder-val="{{ false }}">
+              <div style="{{ revealBoxStyle }}">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                  <span style="display:inline-block;width:21px;height:14px;border-radius:3px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,0.18);"><svg viewBox="0 0 60 40" width="21" height="14" preserveAspectRatio="none" style="display:block;"><rect width="60" height="40" fill="#009B3A"></rect><polygon points="30,4 55,20 30,36 5,20" fill="#FEDF00"></polygon><circle cx="30" cy="20" r="8" fill="#002776"></circle></svg></span>
+                  <span style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#8fa3cc;">você quis dizer</span>
+                </div>
+                <p style="font-size:15px;line-height:1.4;color:#aab9da;margin:0 0 15px;">{{ rPt }}</p>
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:9px;">
+                  <span style="display:inline-block;width:21px;height:14px;border-radius:3px;overflow:hidden;flex:none;box-shadow:0 0 0 1px rgba(255,255,255,0.18);"><svg viewBox="0 0 60 40" width="21" height="14" preserveAspectRatio="none" style="display:block;"><rect width="60" height="40" fill="#012169"></rect><path d="M0,0 60,40 M60,0 0,40" stroke="#fff" stroke-width="8"></path><path d="M0,0 60,40" stroke="#C8102E" stroke-width="4"></path><path d="M60,0 0,40" stroke="#C8102E" stroke-width="4"></path><rect x="25" width="10" height="40" fill="#fff"></rect><rect y="15" width="60" height="10" fill="#fff"></rect><rect x="26.5" width="7" height="40" fill="#C8102E"></rect><rect y="16.5" width="60" height="7" fill="#C8102E"></rect></svg></span>
+                  <span style="{{ revealEnLabelStyle }}">em inglês</span>
+                </div>
+                <div style="font-size:20px;font-weight:700;line-height:1.3;letter-spacing:-0.01em;color:#f3f6fd;margin:0 0 13px;text-wrap:pretty;">{{ rEn }}</div>
+                <div style="display:inline-block;font-size:13px;color:#cdd8ef;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:8px 12px;margin-bottom:16px;">{{ rPhonetic }}</div>
+                <div>
+                  <button onClick="{{ onSpeakA }}" style="{{ speakAStyle }}">
+                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M11 5 6 9H2v6h4l5 4z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7"></path><path d="M19 5.5a9 9 0 0 1 0 13"></path></svg>
+                    Ouvir em inglês
+                  </button>
+                </div>
+              </div>
+            </sc-if>
+          </main>
+
+          <div style="position:sticky;bottom:0;z-index:20;display:flex;align-items:center;gap:10px;padding:12px 18px;background:rgba(11,16,32,0.62);backdrop-filter:blur(22px) saturate(160%);-webkit-backdrop-filter:blur(22px) saturate(160%);border-top:1px solid rgba(255,255,255,0.08);">
+            <button onClick="{{ onPrev }}" disabled="{{ firstQ }}" style="{{ prevStyle }}">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="m15 18-6-6 6-6"></path></svg>
+            </button>
+            <button onClick="{{ onNext }}" style="{{ nextStyle }}">
+              {{ nextLabel }}
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M5 12h13"></path><path d="m12 5 7 7-7 7"></path></svg>
+            </button>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ done }}" hint-placeholder-val="{{ false }}">
+          <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:46px 30px;animation:lr-fade .4s ease;">
+            <div style="{{ doneCircleStyle }}">
+              <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4h12v4a6 6 0 0 1-12 0z"></path><path d="M6 6H4a2 2 0 0 0 0 4h2"></path><path d="M18 6h2a2 2 0 0 1 0 4h-2"></path><path d="M9 18h6"></path><path d="M12 14v4"></path><path d="M8 21h8"></path></svg>
+            </div>
+            <h1 style="font-size:28px;font-weight:800;letter-spacing:-0.025em;color:#f3f6fd;margin:24px 0 9px;">Mandou bem!</h1>
+            <p style="font-size:15px;color:#9fb0d4;line-height:1.5;margin:0 0 22px;max-width:300px;">Você praticou todas as frases de <b style="color:#cdd8ef;font-weight:700;">{{ doneScene }}</b>. Continue treinando para chegar a Londres pronto.</p>
+            <div style="display:flex;gap:10px;margin-bottom:26px;">
+              <div style="display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:14px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.11);font-size:14px;font-weight:700;color:#dbe4f7;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#37C7B8" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M20 6 9 17l-5-5"></path></svg>
+                {{ scoreLabel }}
+              </div>
+              <div style="display:inline-flex;align-items:center;gap:7px;padding:10px 14px;border-radius:14px;background:rgba(255,201,74,0.12);border:1px solid rgba(255,201,74,0.3);font-size:14px;font-weight:700;color:#FFD98A;">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:block;"><path d="M13 2 3 14h7l-1 8 10-12h-7z"></path></svg>
+                {{ xp }} XP
+              </div>
+            </div>
+            <div style="display:flex;gap:10px;width:100%;max-width:350px;">
+              <button onClick="{{ onRestart }}" style="{{ restartStyle }}">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M3 12a9 9 0 1 0 2.6-6.4L3 8"></path><path d="M3 3v5h5"></path></svg>
+                Repetir
+              </button>
+              <button onClick="{{ onNextScene }}" style="{{ nextSceneStyle }}">
+                Próximo cenário
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" style="display:block;"><path d="M5 12h13"></path><path d="m12 5 7 7-7 7"></path></svg>
+              </button>
+            </div>
+          </div>
+        </sc-if>
+
+      </sc-if>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { ready:false, scene:null, idx:0, sel:'', revealed:false, done:false, speaking:null, xp:0, practiced:{}, gained:false };
+
+  ACCENTS = { airport:'#5B9BFF', daily:'#FFC94A', health:'#FF5C72', transport:'#37C7B8', restaurant:'#FF9A52' };
+  LS = 'londonready_progress_v1';
+
+  componentDidMount(){
+    let saved = {};
+    try { saved = JSON.parse(localStorage.getItem(this.LS) || '{}'); } catch(e){}
+    if (saved && (saved.xp || saved.practiced)) this.setState({ xp:saved.xp||0, practiced:saved.practiced||{} });
+
+    const grab = () => {
+      if (window.LONDON_SCENARIOS){
+        this.DATA = window.LONDON_SCENARIOS;
+        this.setState({ ready:true, scene: Object.keys(this.DATA)[0] });
+        return true;
+      }
+      return false;
+    };
+    if (!grab()) this._t = setInterval(()=>{ if (grab()) clearInterval(this._t); }, 30);
+
+    if ('speechSynthesis' in window){
+      try { window.speechSynthesis.getVoices(); window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices(); } catch(e){}
+    }
+    this._key = (e) => {
+      if (this.state.done || !this.state.ready) return;
+      if (e.key === 'ArrowRight') this.nav(1);
+      else if (e.key === 'ArrowLeft') this.nav(-1);
+    };
+    window.addEventListener('keydown', this._key);
+  }
+  componentWillUnmount(){
+    if (this._t) clearInterval(this._t);
+    if (this._g) clearTimeout(this._g);
+    if (this._key) window.removeEventListener('keydown', this._key);
+    this.stopSpeech();
+  }
+
+  hexA(hex, a){ const n = parseInt(hex.slice(1),16); return `rgba(${(n>>16)&255},${(n>>8)&255},${n&255},${a})`; }
+  lighten(hex, amt){ const n=parseInt(hex.slice(1),16); let r=(n>>16)&255,g=(n>>8)&255,b=n&255; r=Math.round(r+(255-r)*amt); g=Math.round(g+(255-g)*amt); b=Math.round(b+(255-b)*amt); return '#'+((1<<24)+(r<<16)+(g<<8)+b).toString(16).slice(1); }
+
+  icon(name, size, sw){
+    const e = React.createElement;
+    const sz = size || 18, w = sw || 1.9;
+    let kids = [], fill = false;
+    switch(name){
+      case 'plane': kids=[e('path',{key:0,d:'M17.8 19.2 16 11l3.5-3.5c1-1 1-2.6 0-3.5s-2.5-1-3.5 0L12.5 7.5 4.4 5.7c-.4-.1-.7.4-.4.7l3.1 3.6-2 2-1.6-.4c-.3-.1-.6.3-.4.6l1.9 1.9 1.9 1.9c.3.2.7-.1.6-.4l-.4-1.6 2-2 3.6 3.1c.3.3.8 0 .7-.4z'})]; break;
+      case 'cart': kids=[e('circle',{key:0,cx:9,cy:20,r:1.3}),e('circle',{key:1,cx:18,cy:20,r:1.3}),e('path',{key:2,d:'M2 3h2l2.6 12.4c.2.9 1 1.6 2 1.6h9.8c1 0 1.8-.7 1.9-1.6L22 7H6'})]; break;
+      case 'health': kids=[e('path',{key:0,d:'M20 14c1.4-1.5 2-3 2-4.7A4.8 4.8 0 0 0 17.2 4.5c-1.7 0-3 .8-4.2 2.1l-1 .9-1-.9C9.8 5.3 8.5 4.5 6.8 4.5A4.8 4.8 0 0 0 2 9.3c0 1.7.6 3.2 2 4.7l8 8z'}),e('path',{key:1,d:'M2.6 12.5h5l1.4-3 2.5 6 2-8 1.7 5h5.2'})]; break;
+      case 'train': kids=[e('rect',{key:0,x:4,y:3,width:16,height:14,rx:3}),e('path',{key:1,d:'M4 11h16'}),e('path',{key:2,d:'M12 3v8'}),e('path',{key:3,d:'m7 17-2 4'}),e('path',{key:4,d:'m17 21-2-4'}),e('circle',{key:5,cx:8.5,cy:14,r:0.7,fill:'currentColor',stroke:'none'}),e('circle',{key:6,cx:15.5,cy:14,r:0.7,fill:'currentColor',stroke:'none'})]; break;
+      case 'coffee': kids=[e('path',{key:0,d:'M16 8h1.5a3 3 0 0 1 0 6H16'}),e('path',{key:1,d:'M3 8h13v6a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4z'}),e('path',{key:2,d:'M6 2v2.4'}),e('path',{key:3,d:'M10 2v2.4'}),e('path',{key:4,d:'M14 2v2.4'})]; break;
+      default: kids=[];
+    }
+    return e('svg',{width:sz,height:sz,viewBox:'0 0 24 24',fill:fill?'currentColor':'none',stroke:fill?'none':'currentColor',strokeWidth:w,strokeLinecap:'round',strokeLinejoin:'round','aria-hidden':true,style:{display:'block',flex:'none'}}, kids);
+  }
+  SCENE_ICON = { airport:'plane', daily:'cart', health:'health', transport:'train', restaurant:'coffee' };
+
+  cur(){ return this.DATA[this.state.scene]; }
+  curQ(){ return this.cur().questions[this.state.idx]; }
+  curAns(){ const s = this.state.sel; return s === '' ? null : this.curQ().answers[parseInt(s)]; }
+
+  stopSpeech(){ if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
+  speak(text, which){
+    if (!('speechSynthesis' in window) || !text) return;
+    this.stopSpeech();
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = 'en-GB'; u.rate = 1.0; u.pitch = 1;
+    const voices = window.speechSynthesis.getVoices();
+    const kate = voices.find(v => v.name.includes('Kate'))
+      || voices.find(v => v.lang === 'en-GB' && /female|kate|serena|stephanie/i.test(v.name))
+      || voices.find(v => v.lang === 'en-GB');
+    if (kate) u.voice = kate;
+    u.onend = u.onerror = () => { if (this.state.speaking === which) this.setState({ speaking:null }); };
+    this.setState({ speaking:which });
+    window.speechSynthesis.speak(u);
+  }
+
+  practice(){
+    const key = this.state.scene + ':' + this.state.idx;
+    if (this.state.practiced[key]) return;
+    const practiced = Object.assign({}, this.state.practiced, { [key]:true });
+    const xp = this.state.xp + 10;
+    this.setState({ practiced, xp, gained:true });
+    try { localStorage.setItem(this.LS, JSON.stringify({ xp, practiced })); } catch(e){}
+    if (this._g) clearTimeout(this._g);
+    this._g = setTimeout(()=>this.setState({ gained:false }), 820);
+  }
+
+  selectScene(k){ this.stopSpeech(); this.setState({ scene:k, idx:0, sel:'', revealed:false, done:false, speaking:null }); }
+  nextScene(){ const keys = Object.keys(this.DATA); const i = keys.indexOf(this.state.scene); this.selectScene(keys[(i+1) % keys.length]); }
+  onSelect(e){ this.setState({ sel:e.target.value, revealed:false }); }
+  confirm(){ const a = this.curAns(); if (!a) return; this.setState({ revealed:true }); this.practice(); setTimeout(()=>this.speak(a.en,'a'), 280); }
+  jumpTo(i){ this.stopSpeech(); this.setState({ idx:i, sel:'', revealed:false, speaking:null }); }
+  nav(dir){
+    this.stopSpeech();
+    const total = this.cur().questions.length;
+    const next = this.state.idx + dir;
+    if (next >= total){ this.setState({ done:true, speaking:null }); return; }
+    if (next < 0) return;
+    this.setState({ idx:next, sel:'', revealed:false, speaking:null });
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+  restart(){ this.setState({ idx:0, sel:'', revealed:false, done:false }); }
+
+  renderVals(){
+    const base = { ready:this.state.ready, xp:this.state.xp, gained:this.state.gained };
+    base.xpPillStyle = `display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:rgba(255,201,74,0.13);border:1px solid rgba(255,201,74,0.32);color:#FFD98A;font-size:14px;font-weight:700;${this.state.gained?'animation:lr-bump .5s ease;':''}`;
+    if (!this.state.ready) return base;
+
+    const { scene, idx, sel, revealed, done, speaking, practiced } = this.state;
+    const data = this.DATA;
+    const accent = this.ACCENTS[scene] || '#5B9BFF';
+    const accentLt = this.lighten(accent, 0.28);
+    const grad = `linear-gradient(135deg,${this.lighten(accent,0.16)},${accent})`;
+    const s = data[scene];
+    const total = s.questions.length;
+    const q = s.questions[idx];
+    const a = sel === '' ? null : q.answers[parseInt(sel)];
+
+    const tabBase = 'flex:none;display:inline-flex;align-items:center;gap:7px;border-radius:13px;padding:9px 14px;font-size:14px;font-weight:600;font-family:inherit;cursor:pointer;white-space:nowrap;transition:all .22s;';
+    const scenes = Object.keys(data).map(k => {
+      const c = this.ACCENTS[k] || '#5B9BFF';
+      const active = k === scene;
+      return {
+        key:k,
+        shortLabel: data[k].label.split('/')[0].trim(),
+        icon: this.icon(this.SCENE_ICON[k], 17, 1.9),
+        onClick: () => this.selectScene(k),
+        style: tabBase + (active
+          ? `background:${this.lighten(c,0.05)};color:#0b1020;border:1px solid ${this.hexA(c,0.6)};box-shadow:0 6px 18px ${this.hexA(c,0.45)};`
+          : 'background:rgba(255,255,255,0.06);color:#aebbd8;border:1px solid rgba(255,255,255,0.09);')
+      };
+    });
+
+    const segs = s.questions.map((_, i) => {
+      const done_i = !!practiced[scene + ':' + i];
+      const isCur = i === idx;
+      let st = 'flex:1;height:6px;border-radius:99px;border:none;padding:0;cursor:pointer;transition:all .3s;';
+      if (isCur) st += `background:${accent};box-shadow:0 0 12px ${this.hexA(accent,0.65)};`;
+      else if (done_i) st += `background:${this.hexA(accent,0.8)};`;
+      else st += 'background:rgba(255,255,255,0.12);';
+      return { style: st, onClick: () => this.jumpTo(i) };
+    });
+
+    const pulse = 'animation:lr-pulse .8s ease-in-out infinite alternate;';
+    const score = Object.keys(practiced).filter(k => k.indexOf(scene + ':') === 0).length;
+
+    return Object.assign(base, {
+      scenes,
+      segs,
+      progressLabel: `${idx+1} / ${total}`,
+      catLabel: s.label,
+      catIcon: this.icon(this.SCENE_ICON[scene], 15, 2),
+      catPillStyle: `display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:${this.hexA(accent,0.14)};border:1px solid ${this.hexA(accent,0.32)};color:${accentLt};font-size:13px;font-weight:700;letter-spacing:-0.01em;`,
+      qEn: q.q,
+      qPt: q.pt,
+      onSpeakQ: () => this.speak(q.q, 'q'),
+      speakQStyle: `width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.13);color:${accentLt};cursor:pointer;flex:none;transition:all .2s;${speaking==='q'?pulse:''}`,
+      options: q.answers.map((an,i) => ({ value:String(i), label:an.pt })),
+      selectedValue: sel,
+      onSelect: (e) => this.onSelect(e),
+      showConfirm: !revealed,
+      confirmDisabled: sel === '',
+      onConfirm: () => this.confirm(),
+      confirmStyle: `width:100%;display:flex;align-items:center;justify-content:center;gap:8px;background:${sel===''?'rgba(255,255,255,0.08)':grad};color:${sel===''?'#6b7ba0':'#0b1020'};border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;font-family:inherit;letter-spacing:-0.01em;cursor:${sel===''?'not-allowed':'pointer'};box-shadow:${sel===''?'none':`0 10px 26px ${this.hexA(accent,0.34)}`};transition:all .22s;`,
+      revealed,
+      rPt: a ? a.pt : '',
+      rEn: a ? a.en : '',
+      rPhonetic: a ? a.ph : '',
+      revealEnLabelStyle: `font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:${accentLt};`,
+      revealBoxStyle: `background:linear-gradient(160deg,${this.hexA(accent,0.17)},rgba(255,255,255,0.04));border:1px solid ${this.hexA(accent,0.32)};border-radius:18px;padding:18px;margin-top:6px;box-shadow:0 18px 44px -26px ${this.hexA(accent,0.7)},inset 0 1px 0 rgba(255,255,255,0.12);animation:lr-rise .38s cubic-bezier(.22,1,.36,1);`,
+      onSpeakA: () => { const an = this.curAns(); if (an) this.speak(an.en, 'a'); },
+      speakAStyle: `display:inline-flex;align-items:center;gap:8px;background:${accent};color:#0b1020;border:none;border-radius:12px;padding:11px 18px;font-size:14px;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 8px 20px ${this.hexA(accent,0.4)};${speaking==='a'?pulse:''}`,
+      showCard: !done,
+      done,
+      firstQ: idx === 0,
+      onPrev: () => this.nav(-1),
+      onNext: () => this.nav(1),
+      nextLabel: idx === total-1 ? 'Finalizar' : 'Próxima',
+      prevStyle: `width:48px;height:48px;flex:none;border-radius:14px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);color:${idx===0?'#3c486a':'#cdd8f0'};cursor:${idx===0?'not-allowed':'pointer'};transition:all .2s;`,
+      nextStyle: `flex:1;display:flex;align-items:center;justify-content:center;gap:8px;height:48px;border-radius:14px;background:${grad};color:#0b1020;border:none;font-size:16px;font-weight:700;font-family:inherit;letter-spacing:-0.01em;cursor:pointer;box-shadow:0 8px 22px ${this.hexA(accent,0.35)};`,
+      doneScene: s.label,
+      scoreLabel: `${score}/${total} frases`,
+      onRestart: () => this.restart(),
+      onNextScene: () => this.nextScene(),
+      restartStyle: `flex:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 18px;border-radius:14px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.13);color:#dbe4f7;font-size:15px;font-weight:700;font-family:inherit;cursor:pointer;transition:all .2s;`,
+      nextSceneStyle: `flex:1;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px;border-radius:14px;background:${grad};color:#0b1020;border:none;font-size:15px;font-weight:700;font-family:inherit;letter-spacing:-0.01em;cursor:pointer;box-shadow:0 9px 24px ${this.hexA(accent,0.35)};`,
+      doneCircleStyle: `width:92px;height:92px;border-radius:50%;background:${grad};color:#0b1020;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 46px ${this.hexA(accent,0.45)},inset 0 2px 0 rgba(255,255,255,0.35);animation:lr-pop .5s cubic-bezier(.34,1.56,.64,1);`
+    });
+  }
 }
-
-function switchScene(k){
-  scene = k; idx = 0;
-  document.querySelectorAll('.tab').forEach((t,i) => t.classList.toggle('active', keys[i]===k));
-  document.getElementById('doneScreen').classList.remove('visible');
-  document.getElementById('cardWrap').style.display = '';
-  document.getElementById('navRow').style.display = '';
-  render();
-}
-
-function render(){
-  const s = SCENARIOS[scene], total = s.questions.length, q = s.questions[idx];
-  currentAnswer = null;
-  document.getElementById('pbarFill').style.width = (idx/total*100) + '%';
-  document.getElementById('plabel').textContent = `${idx+1} / ${total}`;
-  document.getElementById('tagDot').style.background = s.color;
-  const tt = document.getElementById('tagText');
-  tt.textContent = s.icon + ' ' + s.label; tt.style.color = s.color;
-  document.getElementById('qEn').textContent = q.q;
-  document.getElementById('qPt').textContent = q.pt;
-  const sel = document.getElementById('answerSelect');
-  sel.innerHTML = '<option value="">— Escolha como você responderia —</option>';
-  q.answers.forEach((a, i) => {
-    const opt = document.createElement('option');
-    opt.value = i;
-    opt.textContent = a.pt;
-    sel.appendChild(opt);
-  });
-  document.getElementById('resultBox').classList.remove('visible');
-  document.getElementById('btnConfirm').disabled = true;
-  document.getElementById('rEn').textContent = '';
-  document.getElementById('rPhonetic').textContent = '';
-  document.getElementById('btnPrev').disabled = idx === 0;
-  document.getElementById('btnNext').textContent = idx === total-1 ? 'Finalizar ✓' : 'Próxima →';
-}
-
-function onSelectChange(){
-  const sel = document.getElementById('answerSelect');
-  document.getElementById('btnConfirm').disabled = sel.value === '';
-  document.getElementById('resultBox').classList.remove('visible');
-  currentAnswer = null;
-}
-
-function confirmAnswer(){
-  const sel = document.getElementById('answerSelect');
-  const q = SCENARIOS[scene].questions[idx];
-  const a = q.answers[parseInt(sel.value)];
-  currentAnswer = a;
-  document.getElementById('rEn').textContent = a.en;
-  document.getElementById('rPhonetic').textContent = '🔤 ' + a.ph;
-  document.getElementById('resultBox').classList.add('visible');
-  setTimeout(() => speak('a'), 300);
-}
-
-function nav(dir){
-  stopSpeech();
-  const total = SCENARIOS[scene].questions.length;
-  const next = idx + dir;
-  if(next >= total){ showDone(); return; }
-  if(next < 0) return;
-  idx = next; render();
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function showDone(){
-  document.getElementById('cardWrap').style.display = 'none';
-  document.getElementById('navRow').style.display = 'none';
-  document.getElementById('doneScreen').classList.add('visible');
-  document.getElementById('pbarFill').style.width = '100%';
-  document.getElementById('plabel').textContent = '✓ Completo';
-}
-
-function restart(){
-  idx = 0;
-  document.getElementById('doneScreen').classList.remove('visible');
-  document.getElementById('cardWrap').style.display = '';
-  document.getElementById('navRow').style.display = '';
-  render();
-}
-
-function stopSpeech(){
-  if('speechSynthesis' in window) window.speechSynthesis.cancel();
-  document.querySelectorAll('.speaking').forEach(el => el.classList.remove('speaking'));
-}
-
-function speak(type){
-  if(!('speechSynthesis' in window)){ alert('Use o Chrome para ouvir o áudio.'); return; }
-  let text = '', btnId = '';
-  if(type==='q'){ text = SCENARIOS[scene].questions[idx].q; btnId = 'btnListenQ'; }
-  if(type==='a'){ text = currentAnswer?.en; btnId = 'btnListenA'; }
-  if(!text) return;
-  stopSpeech();
-  const btn = document.getElementById(btnId);
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = 'en-GB'; u.rate = 0.82; u.pitch = 1;
-  const voices = window.speechSynthesis.getVoices();
-  const brit = voices.find(v =>
-    v.lang === 'en-GB' ||
-    ['Daniel','Kate','Oliver','Serena'].some(n => v.name.includes(n))
-  );
-  if(brit) u.voice = brit;
-  btn.classList.add('speaking');
-  u.onend = u.onerror = () => btn.classList.remove('speaking');
-  window.speechSynthesis.speak(u);
-}
-
-if('speechSynthesis' in window){
-  window.speechSynthesis.getVoices();
-  window.speechSynthesis.onvoiceschanged = () => window.speechSynthesis.getVoices();
-}
-init();
 </script>
 </body>
 </html>
